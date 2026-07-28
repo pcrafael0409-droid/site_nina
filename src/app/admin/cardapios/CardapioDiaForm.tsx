@@ -9,6 +9,8 @@ type Cardapio = {
   prato_principal: string
   acompanhamentos: string
   valor_diario: number
+  proteina_1?: string | null
+  proteina_2?: string | null
 }
 
 export default function CardapioDiaForm({ cardapio, nomeDia }: { cardapio: Cardapio, nomeDia: string }) {
@@ -18,6 +20,8 @@ export default function CardapioDiaForm({ cardapio, nomeDia }: { cardapio: Carda
   const [prato, setPrato] = useState(cardapio.prato_principal)
   const [acompanhamentos, setAcompanhamentos] = useState(cardapio.acompanhamentos || '')
   const [valor, setValor] = useState(cardapio.valor_diario.toString())
+  const [proteina1, setProteina1] = useState(cardapio.proteina_1 || '')
+  const [proteina2, setProteina2] = useState(cardapio.proteina_2 || '')
 
   const handleSave = async () => {
     setIsPending(true)
@@ -25,7 +29,9 @@ export default function CardapioDiaForm({ cardapio, nomeDia }: { cardapio: Carda
       cardapio.dia_semana,
       prato,
       acompanhamentos,
-      parseFloat(valor)
+      parseFloat(valor),
+      proteina1,
+      proteina2
     )
     setIsPending(false)
     if (result.success) {
@@ -76,6 +82,35 @@ export default function CardapioDiaForm({ cardapio, nomeDia }: { cardapio: Carda
           ) : (
             <p className="text-nina-olive-400 text-sm">{cardapio.acompanhamentos || 'Nenhum'}</p>
           )}
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label className="block text-xs font-bold text-nina-olive-400 uppercase tracking-wider mb-1">Proteína 1</label>
+            {isEditing ? (
+              <input 
+                value={proteina1}
+                onChange={(e) => setProteina1(e.target.value)}
+                className="w-full px-3 py-2 border border-[#e8e3d5] rounded-lg focus:ring-2 focus:ring-nina-gold-400 outline-none text-sm text-[#383b32] bg-white" 
+                placeholder="Ex: Frango Assado"
+              />
+            ) : (
+              <p className="text-[#383b32] text-sm font-medium">{cardapio.proteina_1 || '-'}</p>
+            )}
+          </div>
+          <div>
+            <label className="block text-xs font-bold text-nina-olive-400 uppercase tracking-wider mb-1">Proteína 2</label>
+            {isEditing ? (
+              <input 
+                value={proteina2}
+                onChange={(e) => setProteina2(e.target.value)}
+                className="w-full px-3 py-2 border border-[#e8e3d5] rounded-lg focus:ring-2 focus:ring-nina-gold-400 outline-none text-sm text-[#383b32] bg-white" 
+                placeholder="Ex: Omelete"
+              />
+            ) : (
+              <p className="text-[#383b32] text-sm font-medium">{cardapio.proteina_2 || '-'}</p>
+            )}
+          </div>
         </div>
 
         <div>

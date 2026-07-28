@@ -86,6 +86,7 @@ export default function ConfigFormWrapper({ config }: { config: any }) {
         <p className="text-xs text-[#383b32]/50 mt-2 font-medium">Quantos dias de antecedência para o limite de horário. (1 = dia anterior, 0 = no mesmo dia).</p>
       </div>
 
+
       <div className="pt-6 border-t border-[#e8e3d5]/50"></div>
 
       <div>

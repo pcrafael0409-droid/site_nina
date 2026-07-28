@@ -26,9 +26,12 @@ export default async function MeusPedidosPage() {
     }
   }
 
-  const getDiasTexto = (dias: number[]) => {
+  const getDiasTexto = (dias: number[], proteinas: Record<string, string> | null) => {
     const nomes = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
-    return dias.map(d => nomes[d]).join(', ')
+    return dias.map(d => {
+      const p = proteinas && proteinas[d] ? ` (${proteinas[d]})` : ''
+      return nomes[d] + p
+    }).join(', ')
   }
 
   // Calculate Loyalty Points
@@ -64,7 +67,7 @@ export default async function MeusPedidosPage() {
                     )}
                   </div>
                   <div className="text-sm font-medium text-nina-olive-400 mb-3 bg-[#e8e3d5]/50 inline-block px-3 py-1.5 rounded-lg border border-[#e8e3d5]">
-                    <span className="text-nina-olive-400">Dias:</span> <span className="text-[#383b32]">{getDiasTexto(pedido.dias_semana)}</span>
+                    <span className="text-nina-olive-400">Dias:</span> <span className="text-[#383b32]">{getDiasTexto(pedido.dias_semana, pedido.proteinas)}</span>
                   </div>
                   
                   <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-2 pt-4 border-t border-[#e8e3d5]">

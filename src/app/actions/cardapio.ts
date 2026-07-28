@@ -7,7 +7,9 @@ export async function atualizarCardapioDia(
   dia_semana: number,
   prato_principal: string,
   acompanhamentos: string,
-  valor_diario: number
+  valor_diario: number,
+  proteina_1?: string,
+  proteina_2?: string
 ) {
   try {
     const supabase = await createClient()
@@ -33,6 +35,8 @@ export async function atualizarCardapioDia(
         prato_principal,
         acompanhamentos,
         valor_diario,
+        proteina_1,
+        proteina_2,
       })
       .eq('dia_semana', dia_semana)
 

@@ -216,3 +216,15 @@ ADD COLUMN IF NOT EXISTS pontos_fidelidade integer DEFAULT 0;
 -- Adiciona a coluna pontos_usados na tabela pedidos
 ALTER TABLE public.pedidos 
 ADD COLUMN IF NOT EXISTS pontos_usados integer DEFAULT 0;
+
+-- Adicionar opções de proteína na tabela cardapios
+BEGIN;
+
+ALTER TABLE public.cardapios 
+ADD COLUMN IF NOT EXISTS proteina_1 TEXT;
+
+ALTER TABLE public.cardapios 
+ADD COLUMN IF NOT EXISTS proteina_2 TEXT;
+
+COMMIT;
+

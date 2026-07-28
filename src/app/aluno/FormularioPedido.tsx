@@ -13,6 +13,8 @@ type Cardapio = {
   acompanhamentos: string
   valor_diario: number
   imagem_url?: string
+  proteina_1?: string | null
+  proteina_2?: string | null
 }
 
 const diasSemanaNomes = [
@@ -26,6 +28,7 @@ const diasSemanaNomes = [
 export default function FormularioPedido({ cardapios, descontoPercentual = 0, pontosFidelidade = 0 }: { cardapios: Cardapio[], descontoPercentual?: number, pontosFidelidade?: number }) {
   const router = useRouter()
   const [diasSelecionados, setDiasSelecionados] = useState<number[]>([])
+  const [proteinasSelecionadas, setProteinasSelecionadas] = useState<Record<number, string>>({})
   const [isPending, setIsPending] = useState(false)
   const [error, setError] = useState('')
   const [usarPontos, setUsarPontos] = useState(false)
@@ -33,8 +36,17 @@ export default function FormularioPedido({ cardapios, descontoPercentual = 0, po
   const toggleDia = (diaId: number) => {
     if (diasSelecionados.includes(diaId)) {
       setDiasSelecionados(diasSelecionados.filter(d => d !== diaId))
+      const newProteinas = { ...proteinasSelecionadas }
+      delete newProteinas[diaId]
+      setProteinasSelecionadas(newProteinas)
     } else {
       setDiasSelecionados([...diasSelecionados, diaId])
+      const cardapioDia = cardapios.find(c => c.dia_semana === diaId)
+      if (cardapioDia?.proteina_1) {
+        setProteinasSelecionadas({ ...proteinasSelecionadas, [diaId]: cardapioDia.proteina_1 })
+      } else if (cardapioDia?.proteina_2) {
+        setProteinasSelecionadas({ ...proteinasSelecionadas, [diaId]: cardapioDia.proteina_2 })
+      }
     }
   }
 
@@ -63,10 +75,20 @@ export default function FormularioPedido({ cardapios, descontoPercentual = 0, po
       return
     }
 
+    for (const diaId of diasSelecionados) {
+      const cardapioDia = cardapios.find(c => c.dia_semana === diaId)
+      if (cardapioDia && (cardapioDia.proteina_1 || cardapioDia.proteina_2)) {
+        if (!proteinasSelecionadas[diaId]) {
+          setError('Selecione a proteína para todos os dias que possuem opções de proteína')
+          return
+        }
+      }
+    }
+
     setIsPending(true)
     setError('')
 
-    const result = await criarPedido(diasSelecionados, valorFinal, usarPontos)
+    const result = await criarPedido(diasSelecionados, proteinasSelecionadas, valorFinal, usarPontos)
     
     if (result.success && result.pedidoId) {
       router.push(`/aluno/pagamento/${result.pedidoId}`)
@@ -131,6 +153,28 @@ export default function FormularioPedido({ cardapios, descontoPercentual = 0, po
                     <span>R$ {preco.toFixed(2).replace('.', ',')}</span>
                   )}
                 </div>
+                
+                {isSelected && (cardapioDia?.proteina_1 || cardapioDia?.proteina_2) && (
+                  <div className="mt-4 p-3 bg-white/60 rounded-xl border border-[#e8e3d5] shadow-sm" onClick={(e) => e.stopPropagation()}>
+                    <label className="block text-xs font-bold text-[#383b32] mb-2">Escolha sua proteína:</label>
+                    <div className="flex flex-wrap gap-2">
+                      {[cardapioDia?.proteina_1, cardapioDia?.proteina_2].filter(Boolean).map(proteina => (
+                        <button
+                          key={proteina}
+                          type="button"
+                          onClick={() => setProteinasSelecionadas({ ...proteinasSelecionadas, [dia.id]: proteina as string })}
+                          className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${
+                            proteinasSelecionadas[dia.id] === proteina
+                              ? 'bg-nina-gold-400 text-nina-olive-900 shadow-sm'
+                              : 'bg-white text-[#383b32]/70 border border-[#e8e3d5] hover:border-nina-gold-300'
+                          }`}
+                        >
+                          {proteina}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </motion.button>
           )

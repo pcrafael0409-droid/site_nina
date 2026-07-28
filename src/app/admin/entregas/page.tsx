@@ -33,6 +33,7 @@ export default async function FuncionarioDashboard(
     .select(`
       id,
       status,
+      proteinas,
       usuarios ( nome_completo, turma, turno )
     `)
     .contains('dias_semana', [diaSemana])
@@ -106,6 +107,7 @@ export default async function FuncionarioDashboard(
                 </div>
                 <div style={{ fontSize: '9px', color: '#444' }}>
                   {(pedido.usuarios as any)?.turma || '-'}
+                  {pedido.proteinas && pedido.proteinas[diaSemana] ? ` • Proteína: ${pedido.proteinas[diaSemana]}` : ''}
                 </div>
               </div>
               {/* Manual check box */}
@@ -167,6 +169,14 @@ export default async function FuncionarioDashboard(
                       <span className="font-semibold text-nina-olive-400">Prato</span>
                       <span className="text-[#383b32] font-medium line-clamp-1 text-right ml-4">{pratoHoje}</span>
                     </div>
+                    {pedido.proteinas && pedido.proteinas[diaSemana] && (
+                      <div className="flex justify-between items-center">
+                        <span className="font-semibold text-nina-olive-400">Proteína</span>
+                        <span className="font-bold text-[#383b32] bg-[#f4f0e6] shadow-sm px-3 py-1 rounded-lg border border-[#e8e3d5]">
+                          {pedido.proteinas[diaSemana]}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
 

@@ -12,6 +12,7 @@ export default async function AdminPedidosPage() {
       status,
       valor_total,
       dias_semana,
+      proteinas,
       created_at,
       usuarios ( nome_completo, turma )
     `)
@@ -78,11 +79,14 @@ export default async function AdminPedidosPage() {
                       {turma}
                     </span>
                     <div className="flex gap-1 flex-wrap flex-1">
-                      {pedido.dias_semana?.map((d: number) => (
-                        <span key={d} className="bg-[#f4f0e6] text-[#383b32]/70 text-xs px-2 py-1 rounded-lg font-bold border border-[#e8e3d5]">
-                          {diasNomes[d]}
-                        </span>
-                      ))}
+                      {pedido.dias_semana?.map((d: number) => {
+                        const proteina = pedido.proteinas && pedido.proteinas[d] ? ` (${pedido.proteinas[d]})` : '';
+                        return (
+                          <span key={d} className="bg-[#f4f0e6] text-[#383b32]/70 text-xs px-2 py-1 rounded-lg font-bold border border-[#e8e3d5]">
+                            {diasNomes[d]}{proteina}
+                          </span>
+                        );
+                      })}
                     </div>
                     <span className="ml-auto font-black text-[#383b32] text-sm">
                       R$ {Number(pedido.valor_total).toFixed(2).replace('.', ',')}

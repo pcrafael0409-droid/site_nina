@@ -3,7 +3,7 @@
 import { createClient } from '@/lib/supabase/server'
 import { revalidatePath } from 'next/cache'
 
-export async function criarPedido(diasSemana: number[], valorTotal: number, usarPontos: boolean = false) {
+export async function criarPedido(diasSemana: number[], proteinas: Record<number, string>, valorTotal: number, usarPontos: boolean = false) {
   try {
     const supabase = await createClient()
     const { data: { user } } = await supabase.auth.getUser()
@@ -48,7 +48,8 @@ export async function criarPedido(diasSemana: number[], valorTotal: number, usar
         dias_semana: diasSemana,
         valor_total: valorTotal,
         status: 'pendente',
-        pontos_usados: pontosDescontados
+        pontos_usados: pontosDescontados,
+        proteinas: proteinas
       })
       .select('id')
       .single()
