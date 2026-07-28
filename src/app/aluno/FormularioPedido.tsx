@@ -25,7 +25,19 @@ const diasSemanaNomes = [
   { id: 5, label: 'Sexta', short: 'Sex' },
 ]
 
-export default function FormularioPedido({ cardapios, descontoPercentual = 0, pontosFidelidade = 0 }: { cardapios: Cardapio[], descontoPercentual?: number, pontosFidelidade?: number }) {
+export default function FormularioPedido({ 
+  cardapios, 
+  descontoPercentual = 0, 
+  pontosFidelidade = 0,
+  horarioLimitePedido = '08:00:00',
+  diasAntecedencia = 1
+}: { 
+  cardapios: Cardapio[], 
+  descontoPercentual?: number, 
+  pontosFidelidade?: number,
+  horarioLimitePedido?: string,
+  diasAntecedencia?: number
+}) {
   const router = useRouter()
   const [diasSelecionados, setDiasSelecionados] = useState<number[]>([])
   const [proteinasSelecionadas, setProteinasSelecionadas] = useState<Record<number, string>>({})
@@ -33,7 +45,38 @@ export default function FormularioPedido({ cardapios, descontoPercentual = 0, po
   const [error, setError] = useState('')
   const [usarPontos, setUsarPontos] = useState(false)
 
+  // Função para checar se o limite já passou
+  const isDiaDisponivel = (diaSemana: number) => {
+    const agora = new Date()
+    const hoje = agora.getDay()
+    const referenceDate = new Date(agora)
+
+    // Se for sábado(6) ou domingo(0), considera como se já estivesse na segunda para calcular "próxima semana"
+    if (hoje === 6) {
+      referenceDate.setDate(referenceDate.getDate() + 2)
+    } else if (hoje === 0) {
+      referenceDate.setDate(referenceDate.getDate() + 1)
+    }
+    
+    const diaRef = referenceDate.getDay() // 1 a 5
+    const startOfWeek = new Date(referenceDate)
+    startOfWeek.setDate(startOfWeek.getDate() - diaRef + 1)
+    startOfWeek.setHours(0, 0, 0, 0)
+
+    const dataAlvo = new Date(startOfWeek)
+    dataAlvo.setDate(startOfWeek.getDate() + (diaSemana - 1))
+
+    const dataLimite = new Date(dataAlvo)
+    dataLimite.setDate(dataAlvo.getDate() - diasAntecedencia)
+
+    const [horas, minutos] = horarioLimitePedido.split(':').map(Number)
+    dataLimite.setHours(horas, minutos, 0, 0)
+
+    return agora <= dataLimite
+  }
+
   const toggleDia = (diaId: number) => {
+    if (!isDiaDisponivel(diaId)) return;
     if (diasSelecionados.includes(diaId)) {
       setDiasSelecionados(diasSelecionados.filter(d => d !== diaId))
       const newProteinas = { ...proteinasSelecionadas }
@@ -105,25 +148,39 @@ export default function FormularioPedido({ cardapios, descontoPercentual = 0, po
 
       <div className="grid grid-cols-2 md:grid-cols-1 gap-3 mb-24 relative z-10">
         {diasSemanaNomes.map((dia) => {
-          const isSelected = diasSelecionados.includes(dia.id)
           const cardapioDia = cardapios.find(c => c.dia_semana === dia.id)
-          const prato = cardapioDia?.prato_principal || 'A definir'
-          const preco = cardapioDia ? Number(cardapioDia.valor_diario) : 0
-          const precoComDesconto = preco * (1 - descontoPercentual / 100)
+          const isSelected = diasSelecionados.includes(dia.id)
+          const disponivel = isDiaDisponivel(dia.id)
           
+          if (!cardapioDia) {
+            return (
+              <div key={dia.id} className="solid-card p-5 opacity-50 bg-[#f4f0e6] border-[#e8e3d5]">
+                <div className="flex justify-between items-center mb-3">
+                  <span className="font-bold text-[#383b32] text-lg">{dia.label}</span>
+                </div>
+                <div className="text-sm font-semibold text-nina-olive-400">Sem cardápio definido</div>
+              </div>
+            )
+          }
+
+          const preco = cardapioDia.valor_diario
+          const precoComDesconto = descontoPercentual > 0 ? preco * (1 - descontoPercentual / 100) : preco
+
           return (
             <motion.button
               key={dia.id}
+              type="button"
               onClick={() => toggleDia(dia.id)}
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.99 }}
-              className={`
-                relative rounded-2xl border-2 text-left transition-all overflow-hidden flex flex-col p-5
-                ${isSelected 
-                  ? 'border-nina-gold-400 bg-[#f4f0e6] shadow-sm' 
-                  : 'border-[#e8e3d5] bg-[#f4f0e6] hover:border-nina-gold-300'
-                }
-              `}
+              disabled={!disponivel}
+              whileHover={disponivel ? { scale: 1.02 } : {}}
+              whileTap={disponivel ? { scale: 0.98 } : {}}
+              className={`w-full text-left solid-card p-5 transition-all duration-300 relative overflow-hidden group ${
+                isSelected 
+                  ? 'border-nina-gold-400 ring-4 ring-nina-gold-400/20 bg-[#fdfcfa]' 
+                  : disponivel 
+                    ? 'hover:border-nina-gold-300 hover:shadow-md'
+                    : 'opacity-60 grayscale-[0.5] cursor-not-allowed bg-[#f4f0e6]'
+              }`}
             >
               {/* Checkmark animado */}
               <div className={`absolute top-5 right-5 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm z-10 ${
@@ -133,13 +190,20 @@ export default function FormularioPedido({ cardapios, descontoPercentual = 0, po
               </div>
 
               <div>
-                <span className="inline-block px-3 py-1 rounded-full bg-[#e8e3d5] text-[#383b32] text-[10px] font-bold uppercase tracking-wider mb-3">
-                  {dia.label}
-                </span>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="font-bold text-[#383b32] text-lg group-hover:text-nina-gold-500 transition-colors">
+                    {dia.label}
+                  </span>
+                  {!disponivel && (
+                    <span className="text-[10px] uppercase font-black tracking-wider bg-red-100 text-red-600 px-2 py-0.5 rounded-full">
+                      Encerrado
+                    </span>
+                  )}
+                </div>
                 
                 <h3 className={`text-xl font-bold leading-tight mb-2 ${
                   isSelected ? 'text-[#383b32]' : 'text-[#383b32]/80'
-                }`}>{prato}</h3>
+                }`}>{cardapioDia.prato_principal}</h3>
                 
                 <div className="flex items-center gap-1.5 font-bold text-sm text-nina-olive-600">
                   <Utensils size={14} />

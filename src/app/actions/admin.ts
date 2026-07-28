@@ -60,7 +60,6 @@ export async function salvarConfiguracoes(formData: FormData) {
   const supabase = await createClient()
   
   const id = formData.get('id') as string
-  const preco_padrao = parseFloat(formData.get('preco_padrao') as string)
   const horario_limite_pedido = formData.get('horario_limite_pedido') as string
   const dias_antecedencia = parseInt(formData.get('dias_antecedencia') as string, 10)
   const desconto_professor_percentual = parseFloat(formData.get('desconto_professor_percentual') as string) || 0
@@ -74,7 +73,6 @@ export async function salvarConfiguracoes(formData: FormData) {
 
   const { error } = await supabase.from('configuracoes').upsert({
     id: parseInt(id, 10) || 1,
-    preco_padrao,
     horario_limite_pedido,
     dias_antecedencia,
     desconto_professor_percentual

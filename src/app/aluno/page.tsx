@@ -16,7 +16,7 @@ export default async function AlunoDashboard() {
   ] = await Promise.all([
     supabase.from('cardapios').select('*').order('dia_semana', { ascending: true }),
     supabase.from('usuarios').select('nome_completo, turma, pontos_fidelidade').eq('id', user?.id).single(),
-    supabase.from('configuracoes').select('desconto_professor_percentual').single()
+    supabase.from('configuracoes').select('desconto_professor_percentual, horario_limite_pedido, dias_antecedencia').single()
   ])
 
   const primeiroNome = usuario?.nome_completo?.split(' ')[0] || 'Aluno'
@@ -51,7 +51,13 @@ export default async function AlunoDashboard() {
           </p>
         </div>
       ) : (
-        <FormularioPedido cardapios={cardapios} descontoPercentual={descontoPercentual} pontosFidelidade={pontosFidelidade} />
+        <FormularioPedido 
+          cardapios={cardapios} 
+          descontoPercentual={descontoPercentual} 
+          pontosFidelidade={pontosFidelidade}
+          horarioLimitePedido={config?.horario_limite_pedido || '08:00:00'}
+          diasAntecedencia={config?.dias_antecedencia ?? 1}
+        />
       )}
     </div>
   )

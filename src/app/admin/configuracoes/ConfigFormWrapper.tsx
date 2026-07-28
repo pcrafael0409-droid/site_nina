@@ -38,22 +38,6 @@ export default function ConfigFormWrapper({ config }: { config: any }) {
       <div className="absolute top-0 right-0 w-64 h-64 bg-nina-gold-400/5 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
       <input type="hidden" name="id" value={config?.id || 1} />
       
-      <div>
-        <label htmlFor="preco_padrao" className="block text-sm font-bold text-[#383b32] mb-2">
-          Preço Padrão do Prato (R$)
-        </label>
-        <input
-          type="number"
-          id="preco_padrao"
-          name="preco_padrao"
-          step="0.01"
-          min="0"
-          required
-          defaultValue={config?.preco_padrao || 15.00}
-          className={inputClasses}
-        />
-        <p className="text-xs text-[#383b32]/50 mt-2 font-medium">Este valor será sugerido ao criar novos cardápios.</p>
-      </div>
 
       <div>
         <label htmlFor="horario_limite_pedido" className="block text-sm font-bold text-[#383b32] mb-2">
@@ -64,7 +48,7 @@ export default function ConfigFormWrapper({ config }: { config: any }) {
           id="horario_limite_pedido"
           name="horario_limite_pedido"
           required
-          defaultValue={config?.horario_limite_pedido || '08:00'}
+          defaultValue={config?.horario_limite_pedido ? config.horario_limite_pedido.substring(0, 5) : '08:00'}
           className={inputClasses}
         />
         <p className="text-xs text-[#383b32]/50 mt-2 font-medium">Até que horas do dia anterior ou do próprio dia o aluno pode fazer/cancelar o pedido.</p>
