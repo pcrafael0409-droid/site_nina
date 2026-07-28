@@ -1,4 +1,4 @@
-﻿-- DANGER: Drops everything to start from scratch
+-- DANGER: Drops everything to start from scratch
 DROP TRIGGER IF EXISTS on_auth_user_created ON auth.users;
 DROP FUNCTION IF EXISTS public.handle_new_user();
 DROP FUNCTION IF EXISTS public.get_user_role() CASCADE;
@@ -212,3 +212,7 @@ ADD COLUMN IF NOT EXISTS desconto_professor_percentual NUMERIC(5, 2) NOT NULL DE
 -- Adiciona a coluna pontos_fidelidade na tabela usuarios
 ALTER TABLE public.usuarios 
 ADD COLUMN IF NOT EXISTS pontos_fidelidade integer DEFAULT 0;
+
+-- Adiciona a coluna pontos_usados na tabela pedidos
+ALTER TABLE public.pedidos 
+ADD COLUMN IF NOT EXISTS pontos_usados integer DEFAULT 0;

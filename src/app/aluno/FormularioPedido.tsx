@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Check, ShoppingBag, Loader2, Utensils } from 'lucide-react'
+import { Check, ShoppingBag, Loader2, Utensils, Gift } from 'lucide-react'
 import { criarPedido } from '@/app/actions/aluno'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
@@ -23,11 +23,12 @@ const diasSemanaNomes = [
   { id: 5, label: 'Sexta', short: 'Sex' },
 ]
 
-export default function FormularioPedido({ cardapios, descontoPercentual = 0 }: { cardapios: Cardapio[], descontoPercentual?: number }) {
+export default function FormularioPedido({ cardapios, descontoPercentual = 0, pontosFidelidade = 0 }: { cardapios: Cardapio[], descontoPercentual?: number, pontosFidelidade?: number }) {
   const router = useRouter()
   const [diasSelecionados, setDiasSelecionados] = useState<number[]>([])
   const [isPending, setIsPending] = useState(false)
   const [error, setError] = useState('')
+  const [usarPontos, setUsarPontos] = useState(false)
 
   const toggleDia = (diaId: number) => {
     if (diasSelecionados.includes(diaId)) {
@@ -44,6 +45,16 @@ export default function FormularioPedido({ cardapios, descontoPercentual = 0 }: 
   }, 0)
 
   const valorComDesconto = valorOriginal * (1 - descontoPercentual / 100)
+  
+  // Se usar pontos e tiver pelo menos 1 dia selecionado, desconta o valor de 1 refeição do total com desconto
+  let valorFinal = valorComDesconto
+  if (usarPontos && diasSelecionados.length > 0) {
+    // Para simplificar, descontamos o valor da primeira refeição selecionada (que normalmente é igual às outras)
+    const primeiroDia = cardapios.find(c => c.dia_semana === diasSelecionados[0])
+    const descontoRefeicao = (primeiroDia ? Number(primeiroDia.valor_diario) : 15) * (1 - descontoPercentual / 100)
+    valorFinal = Math.max(0, valorComDesconto - descontoRefeicao)
+  }
+
   const temDesconto = descontoPercentual > 0 && diasSelecionados.length > 0
 
   const handleSubmit = async () => {
@@ -55,7 +66,7 @@ export default function FormularioPedido({ cardapios, descontoPercentual = 0 }: 
     setIsPending(true)
     setError('')
 
-    const result = await criarPedido(diasSelecionados, valorComDesconto)
+    const result = await criarPedido(diasSelecionados, valorFinal, usarPontos)
     
     if (result.success && result.pedidoId) {
       router.push(`/aluno/pagamento/${result.pedidoId}`)
@@ -138,12 +149,28 @@ export default function FormularioPedido({ cardapios, descontoPercentual = 0 }: 
           }`}>
             
             <div className="flex flex-col">
+              {pontosFidelidade >= 100 && diasSelecionados.length > 0 && (
+                <div className="flex items-center gap-2 mb-2">
+                  <button 
+                    onClick={() => setUsarPontos(!usarPontos)}
+                    className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${
+                      usarPontos 
+                        ? 'bg-nina-gold-400 text-nina-olive-900 border-nina-gold-400' 
+                        : 'bg-transparent text-nina-gold-400 border-nina-gold-400/50 hover:bg-nina-gold-400/10'
+                    }`}
+                  >
+                    <Gift size={14} />
+                    {usarPontos ? 'Usando 100 Pontos' : 'Resgatar 1 Refeição (100 pts)'}
+                  </button>
+                </div>
+              )}
+              
               <span className="text-nina-olive-200 font-bold text-sm uppercase tracking-wider">
                 Total {temDesconto && <span className="text-nina-gold-400 ml-1">(-{descontoPercentual}%)</span>}
               </span>
               <div className="flex items-baseline gap-1">
                 <span className="text-2xl md:text-3xl font-black text-[#f4f0e6] tracking-tighter">
-                  R$ {valorComDesconto.toFixed(2).replace('.', ',')}
+                  R$ {valorFinal.toFixed(2).replace('.', ',')}
                 </span>
                 <span className="text-[#383b32] font-bold text-xs ml-2 bg-nina-gold-400 px-2 py-0.5 rounded-md">
                   {diasSelecionados.length} dia{diasSelecionados.length !== 1 ? 's' : ''}
