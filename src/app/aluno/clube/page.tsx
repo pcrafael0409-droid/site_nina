@@ -5,15 +5,14 @@ export default async function ClubeNinaPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
 
-  const { data: pedidos } = await supabase
-    .from('pedidos')
-    .select('*')
-    .eq('usuario_id', user?.id)
-    .in('status', ['pago', 'entregue'])
+  const { data: usuarioData } = await supabase
+    .from('usuarios')
+    .select('pontos_fidelidade')
+    .eq('id', user?.id)
+    .single()
 
-  // Calculate Loyalty Points: 5 points per order
-  const pedidosPagos = pedidos || []
-  const pontos = pedidosPagos.length * 5
+  // Calculate Loyalty Points from database
+  const pontos = usuarioData?.pontos_fidelidade || 0
   const pontosParaRecompensa = 100
   const progresso = Math.min(100, (pontos / pontosParaRecompensa) * 100)
   const nivel = Math.floor(pontos / 50) + 1
@@ -67,7 +66,7 @@ export default async function ClubeNinaPage() {
                 <p className="text-[#383b32]/80 font-bold mb-1">
                   Faltam apenas <span className="text-nina-gold-600 font-black text-xl">{pontosParaRecompensa - pontos}</span> pontos!
                 </p>
-                <p className="text-[#383b32]/60 text-sm">Cada refeição comprada vale 5 pontos.</p>
+                <p className="text-[#383b32]/60 text-sm">Cada refeição comprada vale 2 pontos.</p>
               </div>
             )}
           </div>
@@ -81,7 +80,7 @@ export default async function ClubeNinaPage() {
           </div>
           <div>
             <h4 className="font-bold text-[#383b32] mb-1">Como Funciona?</h4>
-            <p className="text-sm text-[#383b32]/60">Ao realizar qualquer pedido e ter o pagamento confirmado, você acumula automaticamente 5 pontos na sua conta.</p>
+            <p className="text-sm text-[#383b32]/60">Ao realizar qualquer pedido e ter o pagamento confirmado, você acumula automaticamente 2 pontos na sua conta.</p>
           </div>
         </div>
         <div className="solid-card p-6 rounded-3xl flex items-start gap-4">
