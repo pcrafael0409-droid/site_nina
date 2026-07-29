@@ -20,6 +20,16 @@ export default function HomeClient() {
     }
   }, [state, router])
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search)
+      if (params.get('login') === 'true') {
+        setIsOpen(true)
+        window.history.replaceState({}, '', '/')
+      }
+    }
+  }, [])
+
   return (
     <div className="min-h-screen bg-background flex flex-col font-sans text-nina-dark-800">
       

@@ -95,7 +95,7 @@ export default function CadastroPage() {
 
           {/* X button — same as login modal */}
           <Link
-            href="/home"
+            href="/"
             className="absolute top-6 right-6 text-nina-dark-400 hover:text-nina-dark-900 bg-[#f5f3ed] hover:bg-[#e8e6de] p-2 rounded-full transition-colors"
           >
             <X size={20} />
@@ -108,7 +108,7 @@ export default function CadastroPage() {
             <h1 className="text-2xl font-black text-[#2d2f27] tracking-tight">Criar Conta</h1>
             <p className="text-nina-dark-400 mt-2 font-medium">
               Já tem uma conta?{' '}
-              <Link href="/home" className="text-nina-red-600 hover:text-nina-red-700 font-bold underline decoration-2 decoration-nina-red-400/30 underline-offset-4">
+              <Link href="/?login=true" className="text-nina-red-600 hover:text-nina-red-700 font-bold underline decoration-2 decoration-nina-red-400/30 underline-offset-4">
                 Faça login
               </Link>
             </p>
