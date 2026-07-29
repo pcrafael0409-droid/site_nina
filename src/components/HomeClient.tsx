@@ -25,7 +25,7 @@ export default function HomeClient() {
       const params = new URLSearchParams(window.location.search)
       if (params.get('login') === 'true') {
         setIsOpen(true)
-        window.history.replaceState({}, '', '/')
+        window.history.replaceState({}, '', '/home')
       }
     }
   }, [])
