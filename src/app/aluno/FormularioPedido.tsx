@@ -165,7 +165,7 @@ export default function FormularioPedido({
 
       <h3 className="text-lg md:text-xl font-bold text-nina-dark-900 mb-6 tracking-tight">Em quais dias você vai comer na cantina?</h3>
 
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 mb-24 relative z-10">
+      <div className="flex flex-col gap-4 mb-24 relative z-10">
         {diasSemanaNomes.map((dia) => {
           const cardapioDia = cardapios.find(c => c.dia_semana === dia.id)
           const isSelected = diasSelecionados.includes(dia.id)
@@ -173,11 +173,11 @@ export default function FormularioPedido({
           
           if (!cardapioDia) {
             return (
-              <div key={dia.id} className="bg-nina-bg-light rounded-2xl p-4 md:p-5 border border-nina-red-100 opacity-70">
+              <div key={dia.id} className="bg-nina-bg-light rounded-sm p-6 border border-nina-red-100 opacity-70">
                 <div className="flex justify-between items-center mb-2">
                   <span className="font-bold text-nina-dark-500 text-base">{dia.label}</span>
                 </div>
-                <div className="text-xs font-semibold text-nina-dark-300">Sem cardápio definido</div>
+                <div className="text-sm font-semibold text-nina-dark-300">Sem cardápio definido</div>
               </div>
             )
           }
@@ -186,50 +186,49 @@ export default function FormularioPedido({
           const precoComDesconto = descontoPercentual > 0 ? preco * (1 - descontoPercentual / 100) : preco
 
           return (
-            <motion.button
+            <motion.div
               key={dia.id}
-              type="button"
-              onClick={() => toggleDia(dia.id)}
-              disabled={!disponivel}
-              whileHover={disponivel ? { scale: 1.02, y: -2 } : {}}
-              whileTap={disponivel ? { scale: 0.98 } : {}}
-              className={`w-full text-left rounded-2xl p-4 md:p-5 transition-all duration-300 relative flex flex-col h-full ${
+              whileHover={disponivel ? { y: -2 } : {}}
+              className={`w-full text-left rounded-sm p-6 transition-all duration-300 relative flex flex-col ${
                 isSelected 
-                  ? 'border-2 border-nina-red-500 bg-white shadow-md' 
+                  ? 'border border-nina-red-500 bg-white shadow-[0_10px_30px_-10px_rgba(224,82,82,0.2)]' 
                   : disponivel 
-                    ? 'border border-nina-red-100 bg-white hover:border-nina-red-300 hover:shadow-sm'
-                    : 'bg-nina-bg-light border border-nina-red-100 opacity-60 cursor-not-allowed'
+                    ? 'border border-[#e8e3d5] bg-[#fcf9f2] hover:border-[#d6c0b3] hover:shadow-sm'
+                    : 'bg-[#f4f0e6] border border-[#e8e3d5] opacity-60'
               }`}
             >
               {isSelected && (
-                <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-nina-red-500 text-white flex items-center justify-center shadow-sm z-10">
-                  <Check size={14} className="stroke-[3]" />
+                <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-nina-red-600 text-white flex items-center justify-center shadow-sm z-10 border-[3px] border-white">
+                  <Check size={16} className="stroke-[3]" />
                 </div>
               )}
 
-              <div className="flex-grow flex flex-col">
-                <div className="flex items-center justify-between mb-3">
-                  <span className={`font-bold text-base transition-colors ${
-                    isSelected ? 'text-nina-red-500' : 'text-nina-dark-500'
-                  }`}>
-                    {dia.label}
-                  </span>
-                  {!disponivel && (
-                    <span className="text-[9px] uppercase font-bold tracking-wider bg-nina-dark-100 text-nina-dark-400 px-2 py-0.5 rounded-full">
-                      encerrado
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 cursor-pointer" onClick={() => disponivel && toggleDia(dia.id)}>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className={`font-mono text-sm font-bold tracking-widest uppercase ${
+                      isSelected ? 'text-nina-red-600' : 'text-gray-500'
+                    }`}>
+                      {dia.label}
                     </span>
-                  )}
+                    {!disponivel && (
+                      <span className="text-[10px] uppercase font-bold tracking-wider bg-gray-200 text-gray-500 px-2 py-0.5 rounded-sm">
+                        encerrado
+                      </span>
+                    )}
+                  </div>
+                  
+                  <h3 className={`text-2xl md:text-3xl font-serif font-bold leading-tight mb-2 ${
+                    isSelected ? 'text-nina-dark-900' : 'text-gray-700'
+                  }`}>{cardapioDia.prato_principal}</h3>
+                  <p className="text-sm md:text-base text-gray-500">{cardapioDia.acompanhamentos}</p>
                 </div>
                 
-                <h3 className={`text-lg font-bold leading-tight mb-2 flex-grow ${
-                  isSelected ? 'text-nina-dark-900' : 'text-nina-dark-500'
-                }`}>{cardapioDia.prato_principal}</h3>
-                
-                <div className="mt-auto pt-2">
-                  <div className={`font-bold text-sm ${isSelected ? 'text-nina-dark-900' : 'text-nina-dark-400'}`}>
+                <div className="flex flex-row md:flex-col items-center md:items-end justify-between gap-2 border-t md:border-t-0 md:border-l border-dashed border-gray-300 pt-4 md:pt-0 md:pl-6 min-w-[120px]">
+                  <div className={`font-mono font-bold text-xl md:text-2xl ${isSelected ? 'text-nina-dark-900' : 'text-gray-600'}`}>
                     {descontoPercentual > 0 ? (
-                      <div className="flex items-center gap-1.5 flex-wrap">
-                        <span className="line-through text-nina-dark-300 text-xs">R$ {preco.toFixed(2).replace('.', ',')}</span>
+                      <div className="flex flex-col md:items-end">
+                        <span className="line-through text-gray-400 text-sm">R$ {preco.toFixed(2).replace('.', ',')}</span>
                         <span>R$ {precoComDesconto.toFixed(2).replace('.', ',')}</span>
                       </div>
                     ) : (
@@ -237,29 +236,33 @@ export default function FormularioPedido({
                     )}
                   </div>
                 </div>
-                
-                {isSelected && (cardapioDia?.proteina_1 || cardapioDia?.proteina_2) && (
-                  <div className="mt-3 pt-3 border-t border-nina-red-100" onClick={(e) => e.stopPropagation()}>
-                    <div className="flex flex-col gap-1.5">
-                      {[cardapioDia?.proteina_1, cardapioDia?.proteina_2].filter(Boolean).map(proteina => (
-                        <button
-                          key={proteina}
-                          type="button"
-                          onClick={() => setProteinasSelecionadas({ ...proteinasSelecionadas, [dia.id]: proteina as string })}
-                          className={`px-2 py-1.5 text-[11px] font-bold rounded-lg transition-all text-left ${
-                            proteinasSelecionadas[dia.id] === proteina
-                              ? 'bg-nina-red-50 text-nina-red-600 border border-nina-red-200'
-                              : 'bg-transparent text-nina-dark-400 border border-nina-red-100 hover:bg-nina-red-50/50'
-                          }`}
-                        >
-                          {proteina}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
               </div>
-            </motion.button>
+              
+              {isSelected && (cardapioDia?.proteina_1 || cardapioDia?.proteina_2) && (
+                <div className="mt-5 pt-4 border-t border-dashed border-gray-300">
+                  <span className="font-mono text-[11px] font-bold text-gray-500 tracking-widest uppercase mb-3 block">ESCOLHA SUA OPÇÃO DE PROTEÍNA:</span>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    {[cardapioDia?.proteina_1, cardapioDia?.proteina_2].filter(Boolean).map(proteina => (
+                      <button
+                        key={proteina}
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setProteinasSelecionadas({ ...proteinasSelecionadas, [dia.id]: proteina as string })
+                        }}
+                        className={`flex-1 px-4 py-3 text-sm font-bold rounded-sm transition-all border ${
+                          proteinasSelecionadas[dia.id] === proteina
+                            ? 'bg-nina-red-50 text-nina-red-600 border-nina-red-200 shadow-[inset_0_0_0_1px_rgba(224,82,82,0.2)]'
+                            : 'bg-white text-gray-600 border-[#e8e3d5] hover:bg-gray-50'
+                        }`}
+                      >
+                        {proteina}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </motion.div>
           )
         })}
       </div>
