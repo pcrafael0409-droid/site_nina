@@ -143,7 +143,7 @@ export default function HomeClient() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-            className="w-full max-w-sm lg:w-auto relative flex justify-center mt-8 lg:mt-0 perspective-1000"
+            className="w-full max-w-sm lg:w-auto relative flex justify-center mt-12 lg:mt-20 lg:translate-x-8 perspective-1000"
           >
             {/* Inner glowing effect behind the card */}
             <div className="absolute inset-0 bg-gradient-to-tr from-nina-red-200 to-white/40 blur-2xl rounded-[3rem] -z-10 scale-[1.2] opacity-60"></div>
