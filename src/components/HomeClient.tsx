@@ -31,18 +31,18 @@ export default function HomeClient() {
   }, [])
 
   return (
-    <div className="min-h-screen bg-background flex flex-col font-sans text-nina-dark-800">
-      
+    <div className="min-h-screen flex flex-col font-sans text-nina-dark-800 bg-gradient-to-br from-[#fae0d4] via-[#fcfaf6] to-[#fae5d9] relative">
+      {/* Subtle Background Pattern */}
+      <div 
+        className="absolute inset-0 opacity-40 pointer-events-none z-0"
+        style={{ 
+          backgroundImage: 'radial-gradient(#d6c0b3 1.5px, transparent 1.5px)', 
+          backgroundSize: '28px 28px' 
+        }}
+      />
+
       {/* Top Half - Light Theme */}
-      <div className="relative overflow-hidden pb-24 md:pb-32 bg-gradient-to-br from-[#fae0d4] via-[#fcfaf6] to-[#fae5d9]">
-        {/* Subtle Background Pattern */}
-        <div 
-          className="absolute inset-0 opacity-40 pointer-events-none z-0"
-          style={{ 
-            backgroundImage: 'radial-gradient(#d6c0b3 1.5px, transparent 1.5px)', 
-            backgroundSize: '28px 28px' 
-          }}
-        />
+      <div className="relative pb-16 md:pb-24">
 
         {/* Navbar */}
         <header className="max-w-6xl mx-auto px-4 h-20 md:h-24 flex items-center justify-between relative z-10">
@@ -160,7 +160,7 @@ export default function HomeClient() {
       </div>
 
       {/* Bottom section */}
-      <section className="bg-white flex-grow relative z-20 pt-16 pb-24 mt-8 rounded-t-[3rem] shadow-[0_-10px_40px_-15px_rgba(224,82,82,0.1)]">
+      <section className="flex-grow relative z-20 pt-8 pb-24">
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-12">
             <span className="text-nina-red-600 font-bold text-[11px] uppercase tracking-widest block mb-3">como funciona</span>
@@ -210,7 +210,7 @@ export default function HomeClient() {
         </div>
       </section>
 
-      <footer className="py-8 text-center text-nina-dark-400 font-medium text-sm bg-white">
+      <footer className="py-8 text-center text-nina-dark-400 font-medium text-sm">
         &copy; {new Date().getFullYear()} Cantina Nina. Todos os direitos reservados.
       </footer>
 
