@@ -18,8 +18,7 @@ export default function VendasChart({ chartData }: { chartData: { label: string,
     <div className="relative w-full">
       <div 
         ref={scrollRef}
-        className="h-56 flex items-end justify-start gap-3 md:gap-6 overflow-x-auto pb-4 pt-10 scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        className="h-56 flex items-end justify-start gap-3 md:gap-6 overflow-x-auto pb-4 pt-10 scroll-smooth snap-x snap-mandatory"
       >
         {/* Background line that spans the whole scrollable area */}
         <div 

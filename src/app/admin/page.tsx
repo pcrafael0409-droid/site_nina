@@ -30,7 +30,10 @@ export default async function AdminDashboard() {
   const endOfCurrentWeek = new Date(startOfCurrentWeek)
   endOfCurrentWeek.setDate(endOfCurrentWeek.getDate() + 4) // Sexta
 
+  // Garantir pelo menos 4 semanas de histórico para trás para habilitar o scroll
   let minDate = new Date(startOfCurrentWeek)
+  minDate.setDate(minDate.getDate() - 28) // 4 semanas atrás
+  
   let maxDate = new Date(endOfCurrentWeek)
   
   const diasMap = new Map<string, number>()
