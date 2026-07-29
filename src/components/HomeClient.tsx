@@ -104,33 +104,44 @@ export default function HomeClient() {
             </div>
           </motion.div>
 
-          {/* Right Card (Now visible on mobile) */}
+          {/* Right Card (Decorative) */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="w-full max-w-sm lg:w-auto relative flex justify-center mt-4 lg:mt-0"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+            className="w-full max-w-sm lg:w-auto relative flex justify-center mt-8 lg:mt-0 perspective-1000"
           >
             {/* Inner glowing effect behind the card */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-nina-red-200 to-white/40 blur-2xl rounded-[3rem] -z-10 scale-110 opacity-70"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-nina-red-200 to-white/40 blur-2xl rounded-[3rem] -z-10 scale-[1.2] opacity-60"></div>
             
-            <div className="bg-white/95 backdrop-blur-md text-nina-dark-800 p-6 sm:p-8 rounded-3xl border border-nina-red-100 w-full lg:w-80 shadow-2xl lg:animate-float hover:scale-[1.02] transition-all duration-500">
-              <div className="flex justify-between items-center mb-6">
-                <h3 className="font-bold text-lg text-nina-dark-900">Cardápio do dia</h3>
-                <div className="bg-nina-red-100 text-nina-red-500 p-2 rounded-lg"><Utensils size={18} /></div>
+            <motion.div 
+              animate={{ 
+                y: [0, -15, 0],
+                rotate: [3, 6, 3] 
+              }}
+              transition={{ 
+                duration: 6, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="bg-white/90 backdrop-blur-md text-nina-dark-800 p-5 sm:p-8 rounded-[2rem] border border-nina-red-100 w-[240px] sm:w-[280px] lg:w-80 shadow-[0_20px_50px_-12px_rgba(224,82,82,0.15)] origin-center"
+            >
+              <div className="flex justify-between items-center mb-5 sm:mb-6">
+                <h3 className="font-bold text-base sm:text-lg text-nina-dark-900">Cardápio do dia</h3>
+                <div className="bg-nina-red-100 text-nina-red-500 p-1.5 sm:p-2 rounded-lg"><Utensils size={16} className="sm:w-[18px] sm:h-[18px]" /></div>
               </div>
               
-              <div className="space-y-4 text-sm font-medium pb-6 mb-4 border-b border-nina-red-100 border-dashed">
+              <div className="space-y-3 sm:space-y-4 text-[13px] sm:text-sm font-medium pb-5 sm:pb-6 mb-3 sm:mb-4 border-b border-nina-red-100 border-dashed">
                 <div className="flex justify-between items-center text-nina-dark-500"><span>Feijoada</span><span className="font-bold text-nina-dark-800">R$ 18,00</span></div>
                 <div className="flex justify-between items-center text-nina-dark-500"><span>Grelhado</span><span className="font-bold text-nina-dark-800">R$ 16,00</span></div>
                 <div className="flex justify-between items-center text-nina-dark-500"><span>Vegetariano</span><span className="font-bold text-nina-dark-800">R$ 15,00</span></div>
                 <div className="flex justify-between items-center text-nina-dark-500"><span>Suco natural</span><span className="font-bold text-nina-dark-800">R$ 6,00</span></div>
               </div>
-              <div className="text-xs bg-nina-red-50 text-nina-red-700 py-3 px-4 rounded-xl font-bold flex items-center justify-between">
+              <div className="text-[10px] sm:text-xs bg-nina-red-50 text-nina-red-700 py-2 sm:py-3 px-3 sm:px-4 rounded-xl font-bold flex items-center justify-between">
                 <span>Pedido nº 042</span>
                 <span className="bg-white px-2 py-1 rounded-md shadow-sm">pronto às 12h20</span>
               </div>
-            </div>
+            </motion.div>
           </motion.div>
 
         </main>
