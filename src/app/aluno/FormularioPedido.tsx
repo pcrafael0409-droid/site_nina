@@ -31,14 +31,16 @@ export default function FormularioPedido({
   pontosFidelidade = 0,
   horarioLimitePedido = '08:00:00',
   diasAntecedencia = 1,
-  primeiroNome = 'Aluno'
+  primeiroNome = 'Aluno',
+  gastoSemanal = 0
 }: { 
   cardapios: Cardapio[], 
   descontoPercentual?: number, 
   pontosFidelidade?: number,
   horarioLimitePedido?: string,
   diasAntecedencia?: number,
-  primeiroNome?: string
+  primeiroNome?: string,
+  gastoSemanal?: number
 }) {
   const router = useRouter()
   const [diasSelecionados, setDiasSelecionados] = useState<number[]>([])
@@ -158,8 +160,8 @@ export default function FormularioPedido({
         </div>
 
         <div className="text-left md:text-right bg-[#fcf9f2] border border-[#e8e3d5] p-4 rounded-sm shadow-sm min-w-[200px]">
-           <span className="font-mono text-gray-500 font-bold text-[11px] uppercase tracking-widest block mb-1">Total da semana</span>
-           <span className="text-3xl font-mono font-bold text-nina-dark-900">R$ {valorFinal.toFixed(2).replace('.', ',')}</span>
+           <span className="font-mono text-gray-500 font-bold text-[11px] uppercase tracking-widest block mb-1">Gastos na semana</span>
+           <span className="text-3xl font-mono font-bold text-nina-dark-900">R$ {gastoSemanal.toFixed(2).replace('.', ',')}</span>
         </div>
       </div>
 
