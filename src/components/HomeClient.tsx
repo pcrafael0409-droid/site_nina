@@ -133,22 +133,30 @@ export default function HomeClient() {
                 repeat: Infinity, 
                 ease: "easeInOut" 
               }}
-              className="bg-white/90 backdrop-blur-md text-nina-dark-800 p-5 sm:p-8 rounded-[2rem] border border-nina-red-100 w-[270px] sm:w-[320px] lg:w-[360px] shadow-[0_20px_50px_-12px_rgba(224,82,82,0.15)] origin-center"
+              className="bg-[#fcf9f2] text-nina-dark-800 p-6 sm:p-8 rounded-sm shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-[#e8e3d5] w-[270px] sm:w-[320px] lg:w-[360px] origin-center"
             >
-              <div className="flex justify-between items-center mb-5 sm:mb-6">
-                <h3 className="font-bold text-base sm:text-lg text-nina-dark-900">Cardápio do dia</h3>
-                <div className="bg-nina-red-100 text-nina-red-500 p-1.5 sm:p-2 rounded-lg"><Utensils size={16} className="sm:w-[18px] sm:h-[18px]" /></div>
+              <div className="flex justify-between items-center mb-4 sm:mb-5 pb-4 sm:pb-5 border-b border-dashed border-gray-300">
+                <h3 className="font-serif font-bold text-lg sm:text-xl text-nina-dark-900">Cardápio do dia</h3>
+                <div className="bg-nina-red-600 text-white text-[10px] sm:text-xs font-bold rounded-md w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shadow-sm tracking-tighter">CN</div>
               </div>
               
-              <div className="space-y-3 sm:space-y-4 text-[13px] sm:text-sm font-medium pb-5 sm:pb-6 mb-3 sm:mb-4 border-b border-nina-red-100 border-dashed">
-                <div className="flex justify-between items-center text-nina-dark-500"><span>Feijoada</span><span className="font-bold text-nina-dark-800">R$ 18,00</span></div>
-                <div className="flex justify-between items-center text-nina-dark-500"><span>Grelhado</span><span className="font-bold text-nina-dark-800">R$ 16,00</span></div>
-                <div className="flex justify-between items-center text-nina-dark-500"><span>Vegetariano</span><span className="font-bold text-nina-dark-800">R$ 15,00</span></div>
-                <div className="flex justify-between items-center text-nina-dark-500"><span>Suco natural</span><span className="font-bold text-nina-dark-800">R$ 6,00</span></div>
+              <div className="space-y-4 text-[13px] sm:text-sm font-mono text-gray-800 pb-5 sm:pb-6 border-b border-gray-200">
+                <div className="flex justify-between items-center"><span>Feijoada</span><span className="text-gray-600">R$ 18,00</span></div>
+                <div className="flex justify-between items-center"><span>Grelhado</span><span className="text-gray-600">R$ 16,00</span></div>
+                <div className="flex justify-between items-center"><span>Vegetariano</span><span className="text-gray-600">R$ 15,00</span></div>
+                <div className="flex justify-between items-center"><span>Suco natural</span><span className="text-gray-600">R$ 6,00</span></div>
               </div>
-              <div className="text-[10px] sm:text-xs bg-nina-red-50 text-nina-red-700 py-2 sm:py-3 px-3 sm:px-4 rounded-xl font-bold flex items-center justify-between">
-                <span>Pedido nº 042</span>
-                <span className="bg-white px-2 py-1 rounded-md shadow-sm">pronto às 12h20</span>
+
+              <div className="flex justify-between items-end mt-4 sm:mt-5 mb-6 sm:mb-8">
+                <span className="font-mono text-xs sm:text-sm text-gray-500 tracking-widest uppercase">Total</span>
+                <span className="font-mono font-bold text-lg sm:text-xl text-[#9c2b2b]">R$ 18,00</span>
+              </div>
+
+              <div className="flex justify-between items-center">
+                <span className="font-mono text-[10px] sm:text-xs text-gray-500 tracking-wider">PEDIDO Nº 042</span>
+                <div className="bg-[#e6f4ea] text-[#137333] font-mono text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl font-bold">
+                  pronto às 12h20
+                </div>
               </div>
             </motion.div>
           </motion.div>
@@ -161,36 +169,45 @@ export default function HomeClient() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="mb-12">
             <span className="text-nina-red-600 font-bold text-[11px] uppercase tracking-widest block mb-3">como funciona</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-nina-dark-900">Do pedido à mesa em três passos</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-nina-dark-900">Do pedido à mesa em três passos</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div whileHover={{ y: -5 }} className="bg-nina-bg-light border border-nina-red-200 rounded-3xl p-8 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-nina-red-200/60 text-nina-red-600 flex items-center justify-center mb-6">
-                <Utensils size={24} />
+            <motion.div whileHover={{ y: -5 }} className="bg-[#fcf9f2] border border-[#e8e3d5] rounded-xl p-6 sm:p-8 transition-all">
+              <div className="font-mono text-[#b47a46] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-5">
+                01 <span className="opacity-50 mx-1">•</span> Escolher
               </div>
-              <h3 className="text-xl font-bold text-nina-dark-900 mb-3">Cardápio inteligente</h3>
-              <p className="text-nina-dark-500 text-sm leading-relaxed">
+              <div className="w-12 h-12 rounded-xl bg-[#c33d3d] text-white flex items-center justify-center mb-6 shadow-sm">
+                <Utensils size={20} />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-nina-dark-900 mb-2">Cardápio inteligente</h3>
+              <p className="text-nina-dark-600 text-sm leading-relaxed">
                 Veja o prato do dia e escolha quando comer.
               </p>
             </motion.div>
 
-            <motion.div whileHover={{ y: -5 }} className="bg-nina-bg-light border border-nina-red-200 rounded-3xl p-8 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-nina-red-200/60 text-nina-red-600 flex items-center justify-center mb-6">
-                <QrCode size={24} />
+            <motion.div whileHover={{ y: -5 }} className="bg-[#fcf9f2] border border-[#e8e3d5] rounded-xl p-6 sm:p-8 transition-all">
+              <div className="font-mono text-[#b47a46] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-5">
+                02 <span className="opacity-50 mx-1">•</span> Pagar
               </div>
-              <h3 className="text-xl font-bold text-nina-dark-900 mb-3">Pagamento via Pix</h3>
-              <p className="text-nina-dark-500 text-sm leading-relaxed">
+              <div className="w-12 h-12 rounded-xl bg-[#c33d3d] text-white flex items-center justify-center mb-6 shadow-sm">
+                <QrCode size={20} />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-nina-dark-900 mb-2">Pagamento via Pix</h3>
+              <p className="text-nina-dark-600 text-sm leading-relaxed">
                 Pague na hora, sem cartão ou dinheiro.
               </p>
             </motion.div>
 
-            <motion.div whileHover={{ y: -5 }} className="bg-nina-bg-light border border-nina-red-200 rounded-3xl p-8 transition-all">
-              <div className="w-14 h-14 rounded-2xl bg-nina-red-200/60 text-nina-red-600 flex items-center justify-center mb-6">
-                <Clock size={24} />
+            <motion.div whileHover={{ y: -5 }} className="bg-[#fcf9f2] border border-[#e8e3d5] rounded-xl p-6 sm:p-8 transition-all">
+              <div className="font-mono text-[#b47a46] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-5">
+                03 <span className="opacity-50 mx-1">•</span> Retirar
               </div>
-              <h3 className="text-xl font-bold text-nina-dark-900 mb-3">Retirada rápida</h3>
-              <p className="text-nina-dark-500 text-sm leading-relaxed">
+              <div className="w-12 h-12 rounded-xl bg-[#c33d3d] text-white flex items-center justify-center mb-6 shadow-sm">
+                <Clock size={20} />
+              </div>
+              <h3 className="text-lg font-serif font-bold text-nina-dark-900 mb-2">Retirada rápida</h3>
+              <p className="text-nina-dark-600 text-sm leading-relaxed">
                 Pegue seu prato pronto no balcão.
               </p>
             </motion.div>
