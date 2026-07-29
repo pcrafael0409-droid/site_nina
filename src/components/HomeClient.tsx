@@ -34,19 +34,15 @@ export default function HomeClient() {
     <div className="min-h-screen bg-background flex flex-col font-sans text-nina-dark-800">
       
       {/* Top Half - Light Theme */}
-      <div className="relative overflow-hidden pb-24 md:pb-32">
+      <div className="relative overflow-hidden pb-24 md:pb-32 bg-gradient-to-br from-[#fae0d4] via-[#fcfaf6] to-[#fae5d9]">
         {/* Subtle Background Pattern */}
         <div 
-          className="absolute inset-0 opacity-[0.03] md:opacity-[0.05] pointer-events-none z-0"
+          className="absolute inset-0 opacity-40 pointer-events-none z-0"
           style={{ 
-            backgroundImage: 'radial-gradient(#e05252 2px, transparent 2px)', 
-            backgroundSize: '32px 32px' 
+            backgroundImage: 'radial-gradient(#d6c0b3 1.5px, transparent 1.5px)', 
+            backgroundSize: '28px 28px' 
           }}
         />
-
-        {/* Decorative Blobs for visual interest on mobile & desktop */}
-        <div className="absolute top-0 right-0 w-72 md:w-[500px] h-72 md:h-[500px] bg-nina-red-200/40 rounded-full blur-[60px] md:blur-[80px] -translate-y-1/4 translate-x-1/4 pointer-events-none -z-10" />
-        <div className="absolute top-40 left-0 w-64 md:w-[300px] h-64 md:h-[300px] bg-[#e8e3d5]/60 rounded-full blur-[50px] md:blur-[60px] -translate-x-1/3 pointer-events-none -z-10" />
 
         {/* Navbar */}
         <header className="max-w-6xl mx-auto px-4 h-20 md:h-24 flex items-center justify-between relative z-10">
