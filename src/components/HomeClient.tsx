@@ -88,7 +88,7 @@ export default function HomeClient() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-nina-dark-900 tracking-tight leading-[1.1] mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-black text-nina-dark-900 tracking-tight leading-[1.1] mb-6">
               Hora do almoço<br className="hidden sm:block" />
               <span className="text-nina-red-500"> sem fila nenhuma.</span>
             </h1>
