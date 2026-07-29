@@ -73,15 +73,15 @@ export async function criarPedido(diasSemana: number[], proteinas: Record<number
         }
       }
       console.error('Erro ao criar pedido:', error)
-      return { error: 'Falha ao processar o pedido. Tente novamente.', success: false }
+      return { error: `Erro no DB: ${error?.message || 'Desconhecido'} (cardapio_id: ${primeiroCardapio?.id})`, success: false }
     }
 
     revalidatePath('/aluno')
     revalidatePath('/aluno/pedidos')
     return { success: true, error: '', pedidoId: novoPedido.id }
-  } catch (err) {
+  } catch (err: any) {
     console.error('Erro inesperado em criarPedido:', err)
-    return { error: 'Erro inesperado', success: false }
+    return { error: `Erro Inesperado: ${err?.message || 'Erro desconhecido'}`, success: false }
   }
 }
 
