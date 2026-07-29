@@ -168,7 +168,7 @@ export default function HomeClient() {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div whileHover={{ y: -5 }} className="bg-[#fcf9f2] border border-[#e8e3d5] rounded-xl p-6 sm:p-8 transition-all">
+            <motion.div whileHover={{ y: -5 }} className="bg-white border border-white/60 shadow-[0_15px_40px_-10px_rgba(180,120,110,0.15)] rounded-xl p-6 sm:p-8 transition-all">
               <div className="font-mono text-[#b47a46] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-5">
                 01 <span className="opacity-50 mx-1">•</span> Escolher
               </div>
@@ -181,7 +181,7 @@ export default function HomeClient() {
               </p>
             </motion.div>
 
-            <motion.div whileHover={{ y: -5 }} className="bg-[#fcf9f2] border border-[#e8e3d5] rounded-xl p-6 sm:p-8 transition-all">
+            <motion.div whileHover={{ y: -5 }} className="bg-white border border-white/60 shadow-[0_15px_40px_-10px_rgba(180,120,110,0.15)] rounded-xl p-6 sm:p-8 transition-all">
               <div className="font-mono text-[#b47a46] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-5">
                 02 <span className="opacity-50 mx-1">•</span> Pagar
               </div>
@@ -194,7 +194,7 @@ export default function HomeClient() {
               </p>
             </motion.div>
 
-            <motion.div whileHover={{ y: -5 }} className="bg-[#fcf9f2] border border-[#e8e3d5] rounded-xl p-6 sm:p-8 transition-all">
+            <motion.div whileHover={{ y: -5 }} className="bg-white border border-white/60 shadow-[0_15px_40px_-10px_rgba(180,120,110,0.15)] rounded-xl p-6 sm:p-8 transition-all">
               <div className="font-mono text-[#b47a46] text-[10px] sm:text-xs font-bold tracking-widest uppercase mb-5">
                 03 <span className="opacity-50 mx-1">•</span> Retirar
               </div>
