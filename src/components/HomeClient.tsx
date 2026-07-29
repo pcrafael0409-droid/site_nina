@@ -158,7 +158,7 @@ export default function HomeClient() {
                 repeat: Infinity, 
                 ease: "easeInOut" 
               }}
-              className="bg-white/90 backdrop-blur-md text-nina-dark-800 p-5 sm:p-8 rounded-[2rem] border border-nina-red-100 w-[240px] sm:w-[280px] lg:w-80 shadow-[0_20px_50px_-12px_rgba(224,82,82,0.15)] origin-center"
+              className="bg-white/90 backdrop-blur-md text-nina-dark-800 p-5 sm:p-8 rounded-[2rem] border border-nina-red-100 w-[270px] sm:w-[320px] lg:w-[360px] shadow-[0_20px_50px_-12px_rgba(224,82,82,0.15)] origin-center"
             >
               <div className="flex justify-between items-center mb-5 sm:mb-6">
                 <h3 className="font-bold text-base sm:text-lg text-nina-dark-900">Cardápio do dia</h3>
