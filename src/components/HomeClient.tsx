@@ -34,25 +34,29 @@ export default function HomeClient() {
     <div className="min-h-screen bg-background flex flex-col font-sans text-nina-dark-800">
       
       {/* Top Half - Light Theme */}
-      <div className="relative overflow-hidden pb-32">
+      <div className="relative overflow-hidden pb-24 md:pb-32">
+        {/* Decorative Blobs for visual interest on mobile & desktop */}
+        <div className="absolute top-0 right-0 w-72 md:w-[500px] h-72 md:h-[500px] bg-nina-red-200/40 rounded-full blur-[60px] md:blur-[80px] -translate-y-1/4 translate-x-1/4 pointer-events-none -z-10" />
+        <div className="absolute top-40 left-0 w-64 md:w-[300px] h-64 md:h-[300px] bg-[#e8e3d5]/60 rounded-full blur-[50px] md:blur-[60px] -translate-x-1/3 pointer-events-none -z-10" />
+
         {/* Navbar */}
-        <header className="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between relative z-10">
-          <div className="flex items-center gap-2 text-nina-dark-800 font-bold text-xl">
+        <header className="max-w-6xl mx-auto px-4 h-20 md:h-24 flex items-center justify-between relative z-10">
+          <div className="flex items-center gap-2 text-nina-dark-800 font-bold text-lg md:text-xl">
             <div className="bg-nina-red-500 text-white rounded-md p-1.5 shadow-sm">
               <Utensils size={20} />
             </div>
             <span>Cantina Nina</span>
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4 md:gap-6">
             <button
               onClick={() => setIsOpen(true)}
-              className="text-nina-red-700 hover:text-nina-red-500 font-medium text-sm transition-colors"
+              className="text-nina-red-700 hover:text-nina-red-500 font-medium text-sm md:text-base transition-colors"
             >
               Entrar
             </button>
             <Link
               href="/cadastro"
-              className="bg-nina-red-500 hover:bg-nina-red-600 text-white px-6 py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm hover:shadow-md"
+              className="bg-nina-red-500 hover:bg-nina-red-600 text-white px-5 py-2 md:px-6 md:py-2.5 rounded-xl text-sm font-bold transition-all shadow-sm hover:shadow-md"
             >
               Criar conta
             </Link>
@@ -60,59 +64,76 @@ export default function HomeClient() {
         </header>
 
         {/* Hero */}
-        <main className="w-full max-w-6xl mx-auto px-4 pt-12 pb-20 relative z-10">
-          <div className="max-w-xl">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 bg-nina-red-200/50 rounded-full">
+        <main className="w-full max-w-6xl mx-auto px-4 pt-8 md:pt-12 pb-12 md:pb-20 relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+          
+          {/* Left Text */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-xl flex flex-col items-center lg:items-start text-center lg:text-left"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 bg-nina-red-200/50 rounded-full border border-nina-red-100 shadow-sm">
               <span className="text-nina-red-700 text-[11px] font-bold uppercase tracking-wider">
                 Pedidos online
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-nina-dark-900 tracking-tight leading-[1.1] mb-6">
-              Hora do almoço<br />
-              <span className="text-nina-red-500">sem fila nenhuma.</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-nina-dark-900 tracking-tight leading-[1.1] mb-6">
+              Hora do almoço<br className="hidden sm:block" />
+              <span className="text-nina-red-500"> sem fila nenhuma.</span>
             </h1>
 
-            <p className="text-lg text-nina-dark-500 mb-10 font-medium leading-relaxed max-w-lg">
-              Planeje suas refeições da semana, pague pelo Pix e retire seu prato direto no balcão.
+            <p className="text-base sm:text-lg text-nina-dark-500 mb-8 md:mb-10 font-medium leading-relaxed max-w-lg px-2 sm:px-0">
+              Planeje suas refeições da semana, pague pelo Pix e retire seu prato direto no balcão sem perder tempo.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 w-full sm:w-auto px-4 sm:px-0">
               <Link
                 href="/cadastro"
-                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-nina-red-500 hover:bg-nina-red-600 text-white font-bold py-3.5 px-8 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-nina-red-500 hover:bg-nina-red-600 text-white font-bold py-3.5 px-8 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-1"
               >
                 Começar agora <ArrowRight size={18} />
               </Link>
               <button
                 onClick={() => setIsOpen(true)}
-                className="w-full sm:w-auto flex items-center justify-center gap-2 border border-nina-red-200 hover:bg-nina-red-50 text-nina-dark-900 font-bold py-3.5 px-8 rounded-xl transition-all duration-300"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 bg-white border border-nina-red-200 hover:bg-nina-red-50 text-nina-dark-900 font-bold py-3.5 px-8 rounded-xl transition-all duration-300 shadow-sm hover:shadow-md hover:-translate-y-1"
               >
                 Já tenho conta
               </button>
             </div>
-          </div>
-        </main>
+          </motion.div>
 
-        {/* Floating card */}
-        <div className="absolute right-[10%] top-[25%] hidden lg:block shadow-2xl animate-float transition-all duration-500 hover:scale-105 z-20">
-          <div className="bg-white text-nina-dark-800 p-8 rounded-3xl border border-nina-red-200 w-80 shadow-sm">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="font-bold text-lg text-nina-dark-900">Cardápio do dia</h3>
-              <div className="text-nina-red-500"><Utensils size={18} /></div>
-            </div>
+          {/* Right Card (Now visible on mobile) */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="w-full max-w-sm lg:w-auto relative flex justify-center mt-4 lg:mt-0"
+          >
+            {/* Inner glowing effect behind the card */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-nina-red-200 to-white/40 blur-2xl rounded-[3rem] -z-10 scale-110 opacity-70"></div>
             
-            <div className="space-y-4 text-sm font-medium pb-6 mb-4">
-              <div className="flex justify-between items-center text-nina-dark-500"><span>Feijoada</span><span className="font-bold text-nina-dark-800">R$ 18</span></div>
-              <div className="flex justify-between items-center text-nina-dark-500"><span>Grelhado</span><span className="font-bold text-nina-dark-800">R$ 16</span></div>
-              <div className="flex justify-between items-center text-nina-dark-500"><span>Vegetariano</span><span className="font-bold text-nina-dark-800">R$ 15</span></div>
-              <div className="flex justify-between items-center text-nina-dark-500"><span>Suco natural</span><span className="font-bold text-nina-dark-800">R$ 6</span></div>
+            <div className="bg-white/95 backdrop-blur-md text-nina-dark-800 p-6 sm:p-8 rounded-3xl border border-nina-red-100 w-full lg:w-80 shadow-2xl lg:animate-float hover:scale-[1.02] transition-all duration-500">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="font-bold text-lg text-nina-dark-900">Cardápio do dia</h3>
+                <div className="bg-nina-red-100 text-nina-red-500 p-2 rounded-lg"><Utensils size={18} /></div>
+              </div>
+              
+              <div className="space-y-4 text-sm font-medium pb-6 mb-4 border-b border-nina-red-100 border-dashed">
+                <div className="flex justify-between items-center text-nina-dark-500"><span>Feijoada</span><span className="font-bold text-nina-dark-800">R$ 18,00</span></div>
+                <div className="flex justify-between items-center text-nina-dark-500"><span>Grelhado</span><span className="font-bold text-nina-dark-800">R$ 16,00</span></div>
+                <div className="flex justify-between items-center text-nina-dark-500"><span>Vegetariano</span><span className="font-bold text-nina-dark-800">R$ 15,00</span></div>
+                <div className="flex justify-between items-center text-nina-dark-500"><span>Suco natural</span><span className="font-bold text-nina-dark-800">R$ 6,00</span></div>
+              </div>
+              <div className="text-xs bg-nina-red-50 text-nina-red-700 py-3 px-4 rounded-xl font-bold flex items-center justify-between">
+                <span>Pedido nº 042</span>
+                <span className="bg-white px-2 py-1 rounded-md shadow-sm">pronto às 12h20</span>
+              </div>
             </div>
-            <div className="text-xs bg-nina-red-50 text-nina-red-700 py-3 rounded-xl font-medium text-center">
-              Pedido nº 042 · pronto às 12h20
-            </div>
-          </div>
-        </div>
+          </motion.div>
+
+        </main>
       </div>
 
       {/* Bottom section */}
