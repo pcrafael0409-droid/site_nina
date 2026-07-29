@@ -22,20 +22,6 @@ export default async function AdminDashboard() {
     .reduce((acc, curr) => acc + Number(curr.valor_total), 0) || 0
 
   // CALCULAR DADOS DO GRÁFICO (Histórico de Refeições)
-  const startOfCurrentWeek = new Date()
-  const diaSemanaAtual = startOfCurrentWeek.getDay()
-  startOfCurrentWeek.setDate(startOfCurrentWeek.getDate() - diaSemanaAtual + (diaSemanaAtual === 0 ? -6 : 1))
-  startOfCurrentWeek.setHours(0, 0, 0, 0)
-  
-  const endOfCurrentWeek = new Date(startOfCurrentWeek)
-  endOfCurrentWeek.setDate(endOfCurrentWeek.getDate() + 4) // Sexta
-
-  // Garantir pelo menos 4 semanas de histórico para trás para habilitar o scroll
-  let minDate = new Date(startOfCurrentWeek)
-  minDate.setDate(minDate.getDate() - 28) // 4 semanas atrás
-  
-  let maxDate = new Date(endOfCurrentWeek)
-  
   const diasMap = new Map<string, number>()
 
   pedidosData?.forEach(p => {
@@ -57,9 +43,6 @@ export default async function AdminDashboard() {
             const mealDate = new Date(startOfWeek)
             mealDate.setDate(mealDate.getDate() + (d - 1))
             
-            if (mealDate < minDate) minDate = new Date(mealDate)
-            if (mealDate > maxDate) maxDate = new Date(mealDate)
-            
             const dateStr = mealDate.toISOString().split('T')[0]
             diasMap.set(dateStr, (diasMap.get(dateStr) || 0) + 1)
           }
@@ -68,32 +51,10 @@ export default async function AdminDashboard() {
     }
   })
 
-  // Garantir que minDate começa na segunda e maxDate termina na sexta
-  const minDia = minDate.getDay()
-  minDate.setDate(minDate.getDate() - minDia + (minDia === 0 ? -6 : 1))
-  
-  const maxDia = maxDate.getDay()
-  if (maxDia >= 1 && maxDia <= 5) {
-    maxDate.setDate(maxDate.getDate() + (5 - maxDia))
-  }
-
-  const chartData = []
-  let curr = new Date(minDate)
-  let safetyCounter = 0
-  while (curr <= maxDate && safetyCounter < 365) {
-    safetyCounter++
-    const dayOfWeek = curr.getDay()
-    if (dayOfWeek >= 1 && dayOfWeek <= 5) {
-      const dateStr = curr.toISOString().split('T')[0]
-      const label = curr.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' })
-      chartData.push({
-        label,
-        dateStr,
-        count: diasMap.get(dateStr) || 0
-      })
-    }
-    curr.setDate(curr.getDate() + 1)
-  }
+  const chartData = Array.from(diasMap.entries()).map(([dateStr, count]) => ({
+    dateStr,
+    count
+  }))
 
   return (
     <div className="space-y-6">
