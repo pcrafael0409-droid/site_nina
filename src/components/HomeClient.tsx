@@ -37,37 +37,12 @@ export default function HomeClient() {
       <div className="relative overflow-hidden pb-24 md:pb-32">
         {/* Subtle Background Pattern */}
         <div 
-          className="absolute inset-0 opacity-30 md:opacity-40 pointer-events-none z-0"
+          className="absolute inset-0 opacity-[0.03] md:opacity-[0.05] pointer-events-none z-0"
           style={{ 
             backgroundImage: 'radial-gradient(#e05252 2px, transparent 2px)', 
             backgroundSize: '32px 32px' 
           }}
         />
-
-        {/* Floating Icons Background */}
-        <motion.div 
-          animate={{ y: [0, -10, 0], rotate: [0, 5, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-24 left-[5%] md:left-[10%] text-nina-red-400 opacity-60 z-0"
-        >
-          <Sparkles size={40} className="w-8 h-8 md:w-10 md:h-10" />
-        </motion.div>
-        
-        <motion.div 
-          animate={{ y: [0, 15, 0], rotate: [0, -10, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-20 right-[15%] md:right-[35%] text-nina-red-400 opacity-60 z-0"
-        >
-          <Star size={24} className="w-5 h-5 md:w-6 md:h-6" />
-        </motion.div>
-        
-        <motion.div 
-          animate={{ y: [0, -12, 0], rotate: [0, 15, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute bottom-24 md:bottom-24 left-[15%] md:left-[35%] text-nina-red-400 opacity-60 z-0"
-        >
-          <Utensils size={36} className="w-7 h-7 md:w-9 md:h-9" />
-        </motion.div>
 
         {/* Decorative Blobs for visual interest on mobile & desktop */}
         <div className="absolute top-0 right-0 w-72 md:w-[500px] h-72 md:h-[500px] bg-nina-red-200/40 rounded-full blur-[60px] md:blur-[80px] -translate-y-1/4 translate-x-1/4 pointer-events-none -z-10" />
