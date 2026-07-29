@@ -129,20 +129,20 @@ export default async function FuncionarioDashboard(
       {/* ── Normal screen list (hidden on print) ── */}
       <div className="print:hidden">
         {diaSemana === 0 || diaSemana === 6 ? (
-          <div className="solid-card p-10 text-center flex flex-col items-center justify-center text-nina-olive-400">
-            <Calendar size={48} className="text-nina-olive-300 mb-4" />
+          <div className="solid-card p-10 text-center flex flex-col items-center justify-center text-nina-dark-400">
+            <Calendar size={48} className="text-nina-dark-300 mb-4" />
             <h2 className="text-xl font-bold text-[#383b32] mb-2">Fim de Semana</h2>
-            <p className="text-nina-olive-400">A cantina não opera aos fins de semana.</p>
+            <p className="text-nina-dark-400">A cantina não opera aos fins de semana.</p>
           </div>
         ) : !pedidos || pedidos.length === 0 ? (
           <div className="solid-card p-12 text-center flex flex-col items-center justify-center">
-            <AlertCircle size={48} className="text-nina-olive-300 mb-4" />
+            <AlertCircle size={48} className="text-nina-dark-300 mb-4" />
             <h2 className="text-xl font-bold text-[#383b32] mb-2">Nenhuma entrega pendente</h2>
-            <p className="text-nina-olive-400 max-w-sm">Nenhum aluno agendou refeição para este dia ou todas já foram entregues.</p>
+            <p className="text-nina-dark-400 max-w-sm">Nenhum aluno agendou refeição para este dia ou todas já foram entregues.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 relative z-10">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-nina-gold-400/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-nina-red-400/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
             {pedidos.map((pedido) => (
               <div
                 key={pedido.id}
@@ -150,7 +150,7 @@ export default async function FuncionarioDashboard(
               >
                 <div className="relative z-10">
                   <div className="flex items-center gap-4 mb-4">
-                    <div className="w-12 h-12 rounded-full bg-[#e8e3d5] text-[#383b32] flex items-center justify-center shrink-0 font-bold text-xl uppercase group-hover:bg-nina-gold-400 transition-all duration-300">
+                    <div className="w-12 h-12 rounded-full bg-[#e8e3d5] text-[#383b32] flex items-center justify-center shrink-0 font-bold text-xl uppercase group-hover:bg-nina-red-400 transition-all duration-300">
                       {((pedido.usuarios as any)?.nome_completo || '?').charAt(0).toUpperCase()}
                     </div>
                     <h3 className="font-bold text-[#383b32] text-lg uppercase">
@@ -160,18 +160,18 @@ export default async function FuncionarioDashboard(
                   
                   <div className="flex flex-col gap-2 text-sm text-[#383b32]/70 bg-[#e8e3d5]/30 p-4 rounded-xl border border-[#e8e3d5]">
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-nina-olive-400">Turma</span>
+                      <span className="font-semibold text-nina-dark-400">Turma</span>
                       <span className="font-bold text-[#383b32] bg-[#f4f0e6] shadow-sm px-3 py-1 rounded-lg border border-[#e8e3d5]">
                         {(pedido.usuarios as any)?.turma || '-'}
                       </span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="font-semibold text-nina-olive-400">Prato</span>
+                      <span className="font-semibold text-nina-dark-400">Prato</span>
                       <span className="text-[#383b32] font-medium line-clamp-1 text-right ml-4">{pratoHoje}</span>
                     </div>
                     {pedido.proteinas && pedido.proteinas[diaSemana] && (
                       <div className="flex justify-between items-center">
-                        <span className="font-semibold text-nina-olive-400">Proteína</span>
+                        <span className="font-semibold text-nina-dark-400">Proteína</span>
                         <span className="font-bold text-[#383b32] bg-[#f4f0e6] shadow-sm px-3 py-1 rounded-lg border border-[#e8e3d5]">
                           {pedido.proteinas[diaSemana]}
                         </span>

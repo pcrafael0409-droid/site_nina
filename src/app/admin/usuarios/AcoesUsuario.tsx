@@ -100,7 +100,7 @@ export default function AcoesUsuario({ userId, currentEmail }: { userId: string,
     <div className="relative" ref={menuRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 text-nina-olive-400 hover:text-[#383b32] hover:bg-[#e8e3d5]/30 rounded-lg transition-colors"
+        className="p-2 text-nina-dark-400 hover:text-[#383b32] hover:bg-[#e8e3d5]/30 rounded-lg transition-colors"
       >
         <MoreVertical size={20} />
       </button>
@@ -143,7 +143,7 @@ export default function AcoesUsuario({ userId, currentEmail }: { userId: string,
                   type="text" 
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
-                  className="w-full px-4 py-2 border border-[#e8e3d5] rounded-lg focus:ring-2 focus:ring-nina-gold-400 outline-none"
+                  className="w-full px-4 py-2 border border-[#e8e3d5] rounded-lg focus:ring-2 focus:ring-nina-red-400 outline-none"
                   placeholder="No mínimo 6 caracteres"
                 />
               </div>
@@ -156,7 +156,7 @@ export default function AcoesUsuario({ userId, currentEmail }: { userId: string,
                   type="text" 
                   value={newLogin}
                   onChange={(e) => setNewLogin(e.target.value)}
-                  className="w-full px-4 py-2 border border-[#e8e3d5] rounded-lg focus:ring-2 focus:ring-nina-gold-400 outline-none"
+                  className="w-full px-4 py-2 border border-[#e8e3d5] rounded-lg focus:ring-2 focus:ring-nina-red-400 outline-none"
                   placeholder="Ex: joao.silva"
                 />
                 <p className="text-xs text-[#383b32]/50 mt-2">O sistema adicionará @cantinanina.com automaticamente.</p>
@@ -193,8 +193,8 @@ export default function AcoesUsuario({ userId, currentEmail }: { userId: string,
                   handleUpdateLogin
                 }
                 disabled={isPending || !!successMsg}
-                className={`px-4 py-2 text-nina-olive-900 font-medium rounded-lg transition-colors disabled:opacity-50 flex items-center gap-2
-                  ${modalType === 'delete' ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-nina-gold-400 hover:bg-nina-gold-500'}
+                className={`px-4 py-2 text-nina-dark-900 font-medium rounded-lg transition-colors disabled:opacity-50 flex items-center gap-2
+                  ${modalType === 'delete' ? 'bg-red-600 hover:bg-red-700 text-white' : 'bg-nina-red-400 hover:bg-nina-red-500'}
                 `}
               >
                 {isPending && <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>}

@@ -30,13 +30,15 @@ export default function FormularioPedido({
   descontoPercentual = 0, 
   pontosFidelidade = 0,
   horarioLimitePedido = '08:00:00',
-  diasAntecedencia = 1
+  diasAntecedencia = 1,
+  primeiroNome = 'Aluno'
 }: { 
   cardapios: Cardapio[], 
   descontoPercentual?: number, 
   pontosFidelidade?: number,
   horarioLimitePedido?: string,
-  diasAntecedencia?: number
+  diasAntecedencia?: number,
+  primeiroNome?: string
 }) {
   const router = useRouter()
   const [diasSelecionados, setDiasSelecionados] = useState<number[]>([])
@@ -142,11 +144,28 @@ export default function FormularioPedido({
   }
 
   return (
-    <div className="mt-8 relative z-10">
+    <div className="relative z-10 w-full max-w-[1000px] mx-auto">
       
-      <h3 className="text-xl md:text-2xl font-black text-[#383b32] mb-6 tracking-tight">Em quais dias você vai comer na cantina?</h3>
+      {/* Welcome Card */}
+      <div className="bg-white border border-nina-red-200 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden flex flex-col md:flex-row justify-between md:items-center mb-8">
+        <div className="relative z-10 mb-4 md:mb-0">
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2 text-nina-dark-900">
+            Olá, <span className="text-nina-red-500">{primeiroNome}</span>
+          </h1>
+          <p className="text-nina-dark-500 font-medium">
+            Agende suas refeições da semana e evite filas.
+          </p>
+        </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-1 gap-3 mb-24 relative z-10">
+        <div className="relative z-10 text-left md:text-right">
+           <span className="text-nina-red-600 font-bold text-[11px] uppercase tracking-widest block mb-1">Total da semana</span>
+           <span className="text-3xl font-black text-nina-dark-900">R$ {valorFinal.toFixed(2).replace('.', ',')}</span>
+        </div>
+      </div>
+
+      <h3 className="text-lg md:text-xl font-bold text-nina-dark-900 mb-6 tracking-tight">Em quais dias você vai comer na cantina?</h3>
+
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-4 mb-24 relative z-10">
         {diasSemanaNomes.map((dia) => {
           const cardapioDia = cardapios.find(c => c.dia_semana === dia.id)
           const isSelected = diasSelecionados.includes(dia.id)
@@ -154,11 +173,11 @@ export default function FormularioPedido({
           
           if (!cardapioDia) {
             return (
-              <div key={dia.id} className="solid-card p-5 opacity-50 bg-[#f4f0e6] border-[#e8e3d5]">
-                <div className="flex justify-between items-center mb-3">
-                  <span className="font-bold text-[#383b32] text-lg">{dia.label}</span>
+              <div key={dia.id} className="bg-nina-bg-light rounded-2xl p-4 md:p-5 border border-nina-red-100 opacity-70">
+                <div className="flex justify-between items-center mb-2">
+                  <span className="font-bold text-nina-dark-500 text-base">{dia.label}</span>
                 </div>
-                <div className="text-sm font-semibold text-nina-olive-400">Sem cardápio definido</div>
+                <div className="text-xs font-semibold text-nina-dark-300">Sem cardápio definido</div>
               </div>
             )
           }
@@ -172,65 +191,65 @@ export default function FormularioPedido({
               type="button"
               onClick={() => toggleDia(dia.id)}
               disabled={!disponivel}
-              whileHover={disponivel ? { scale: 1.02 } : {}}
+              whileHover={disponivel ? { scale: 1.02, y: -2 } : {}}
               whileTap={disponivel ? { scale: 0.98 } : {}}
-              className={`w-full text-left solid-card p-5 transition-all duration-300 relative overflow-hidden group ${
+              className={`w-full text-left rounded-2xl p-4 md:p-5 transition-all duration-300 relative flex flex-col h-full ${
                 isSelected 
-                  ? 'border-nina-gold-400 ring-4 ring-nina-gold-400/20 bg-[#fdfcfa]' 
+                  ? 'border-2 border-nina-red-500 bg-white shadow-md' 
                   : disponivel 
-                    ? 'hover:border-nina-gold-300 hover:shadow-md'
-                    : 'opacity-60 grayscale-[0.5] cursor-not-allowed bg-[#f4f0e6]'
+                    ? 'border border-nina-red-100 bg-white hover:border-nina-red-300 hover:shadow-sm'
+                    : 'bg-nina-bg-light border border-nina-red-100 opacity-60 cursor-not-allowed'
               }`}
             >
-              {/* Checkmark animado */}
-              <div className={`absolute top-5 right-5 w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 shadow-sm z-10 ${
-                isSelected ? 'bg-nina-gold-500 text-white scale-100' : 'bg-[#e8e3d5] text-[#383b32]/30 scale-90'
-              }`}>
-                <Check size={14} className="stroke-[3]" />
-              </div>
+              {isSelected && (
+                <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-nina-red-500 text-white flex items-center justify-center shadow-sm z-10">
+                  <Check size={14} className="stroke-[3]" />
+                </div>
+              )}
 
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="font-bold text-[#383b32] text-lg group-hover:text-nina-gold-500 transition-colors">
+              <div className="flex-grow flex flex-col">
+                <div className="flex items-center justify-between mb-3">
+                  <span className={`font-bold text-base transition-colors ${
+                    isSelected ? 'text-nina-red-500' : 'text-nina-dark-500'
+                  }`}>
                     {dia.label}
                   </span>
                   {!disponivel && (
-                    <span className="text-[10px] uppercase font-black tracking-wider bg-red-100 text-red-600 px-2 py-0.5 rounded-full">
-                      Encerrado
+                    <span className="text-[9px] uppercase font-bold tracking-wider bg-nina-dark-100 text-nina-dark-400 px-2 py-0.5 rounded-full">
+                      encerrado
                     </span>
                   )}
                 </div>
                 
-                <h3 className={`text-xl font-bold leading-tight mb-2 ${
-                  isSelected ? 'text-[#383b32]' : 'text-[#383b32]/80'
+                <h3 className={`text-lg font-bold leading-tight mb-2 flex-grow ${
+                  isSelected ? 'text-nina-dark-900' : 'text-nina-dark-500'
                 }`}>{cardapioDia.prato_principal}</h3>
                 
-                <div className="flex items-center gap-1.5 font-bold text-sm text-nina-olive-600">
-                  <Utensils size={14} />
-                  {descontoPercentual > 0 ? (
-                    <div className="flex items-center gap-2">
-                      <span className="line-through text-[#383b32]/40 text-xs font-semibold">R$ {preco.toFixed(2).replace('.', ',')}</span>
-                      <span className="text-nina-gold-600">R$ {precoComDesconto.toFixed(2).replace('.', ',')}</span>
-                      <span className="bg-nina-gold-400/20 text-nina-gold-700 text-[9px] px-1.5 py-0.5 rounded-md uppercase tracking-wider border border-nina-gold-400/30">-{descontoPercentual}%</span>
-                    </div>
-                  ) : (
-                    <span>R$ {preco.toFixed(2).replace('.', ',')}</span>
-                  )}
+                <div className="mt-auto pt-2">
+                  <div className={`font-bold text-sm ${isSelected ? 'text-nina-dark-900' : 'text-nina-dark-400'}`}>
+                    {descontoPercentual > 0 ? (
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="line-through text-nina-dark-300 text-xs">R$ {preco.toFixed(2).replace('.', ',')}</span>
+                        <span>R$ {precoComDesconto.toFixed(2).replace('.', ',')}</span>
+                      </div>
+                    ) : (
+                      <span>R$ {preco.toFixed(2).replace('.', ',')}</span>
+                    )}
+                  </div>
                 </div>
                 
                 {isSelected && (cardapioDia?.proteina_1 || cardapioDia?.proteina_2) && (
-                  <div className="mt-4 p-3 bg-white/60 rounded-xl border border-[#e8e3d5] shadow-sm" onClick={(e) => e.stopPropagation()}>
-                    <label className="block text-xs font-bold text-[#383b32] mb-2">Escolha sua proteína:</label>
-                    <div className="flex flex-wrap gap-2">
+                  <div className="mt-3 pt-3 border-t border-nina-red-100" onClick={(e) => e.stopPropagation()}>
+                    <div className="flex flex-col gap-1.5">
                       {[cardapioDia?.proteina_1, cardapioDia?.proteina_2].filter(Boolean).map(proteina => (
                         <button
                           key={proteina}
                           type="button"
                           onClick={() => setProteinasSelecionadas({ ...proteinasSelecionadas, [dia.id]: proteina as string })}
-                          className={`px-3 py-1.5 text-xs font-bold rounded-lg transition-all ${
+                          className={`px-2 py-1.5 text-[11px] font-bold rounded-lg transition-all text-left ${
                             proteinasSelecionadas[dia.id] === proteina
-                              ? 'bg-nina-gold-400 text-nina-olive-900 shadow-sm'
-                              : 'bg-white text-[#383b32]/70 border border-[#e8e3d5] hover:border-nina-gold-300'
+                              ? 'bg-nina-red-50 text-nina-red-600 border border-nina-red-200'
+                              : 'bg-transparent text-nina-dark-400 border border-nina-red-100 hover:bg-nina-red-50/50'
                           }`}
                         >
                           {proteina}
@@ -246,14 +265,14 @@ export default function FormularioPedido({
       </div>
 
       <motion.div 
-        className="fixed bottom-[4.5rem] md:bottom-8 left-4 right-4 md:static md:left-auto md:right-auto z-40 md:mt-8"
+        className="fixed bottom-[4.5rem] md:bottom-8 left-4 right-4 md:static md:left-auto md:right-auto z-40 md:mt-8 max-w-xl mx-auto"
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 20 }}
       >
-        <div className="max-w-4xl mx-auto">
-          <div className={`bg-nina-olive-700 p-5 md:p-6 rounded-2xl shadow-lg flex flex-row items-center justify-between gap-4 transition-all duration-300 ${
-            diasSelecionados.length > 0 ? 'ring-2 ring-nina-gold-400' : ''
+        <div className="w-full">
+          <div className={`bg-nina-dark-900 p-5 md:p-6 rounded-3xl shadow-[0_10px_40px_-10px_rgba(224,82,82,0.3)] flex flex-row items-center justify-between gap-4 transition-all duration-300 border border-nina-dark-700 ${
+            diasSelecionados.length > 0 ? 'ring-2 ring-nina-red-500 ring-offset-4 ring-offset-background' : ''
           }`}>
             
             <div className="flex flex-col">
@@ -263,8 +282,8 @@ export default function FormularioPedido({
                     onClick={() => setUsarPontos(!usarPontos)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition-all border ${
                       usarPontos 
-                        ? 'bg-nina-gold-400 text-nina-olive-900 border-nina-gold-400' 
-                        : 'bg-transparent text-nina-gold-400 border-nina-gold-400/50 hover:bg-nina-gold-400/10'
+                        ? 'bg-nina-red-500 text-white border-nina-red-500' 
+                        : 'bg-transparent text-nina-red-400 border-nina-red-400 hover:bg-nina-red-500/10'
                     }`}
                   >
                     <Gift size={14} />
@@ -273,14 +292,14 @@ export default function FormularioPedido({
                 </div>
               )}
               
-              <span className="text-nina-olive-200 font-bold text-sm uppercase tracking-wider">
-                Total {temDesconto && <span className="text-nina-gold-400 ml-1">(-{descontoPercentual}%)</span>}
+              <span className="text-nina-dark-300 font-bold text-xs uppercase tracking-wider">
+                Total {temDesconto && <span className="text-nina-red-400 ml-1">(-{descontoPercentual}%)</span>}
               </span>
-              <div className="flex items-baseline gap-1">
-                <span className="text-2xl md:text-3xl font-black text-[#f4f0e6] tracking-tighter">
+              <div className="flex items-baseline gap-1 mt-1">
+                <span className="text-2xl md:text-3xl font-black text-white tracking-tighter">
                   R$ {valorFinal.toFixed(2).replace('.', ',')}
                 </span>
-                <span className="text-[#383b32] font-bold text-xs ml-2 bg-nina-gold-400 px-2 py-0.5 rounded-md">
+                <span className="text-nina-dark-900 font-bold text-xs ml-2 bg-white px-2 py-1 rounded-lg">
                   {diasSelecionados.length} dia{diasSelecionados.length !== 1 ? 's' : ''}
                 </span>
               </div>
@@ -290,7 +309,7 @@ export default function FormularioPedido({
               type="button"
               onClick={handleSubmit}
               disabled={isPending || diasSelecionados.length === 0}
-              className="bg-nina-gold-500 hover:bg-nina-gold-400 text-nina-olive-900 font-black text-sm md:text-base py-3 md:py-4 px-6 md:px-10 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:-translate-y-1 flex items-center justify-center gap-2 min-w-[140px]"
+              className="bg-nina-red-500 hover:bg-nina-red-400 text-white font-bold text-sm md:text-base py-3.5 md:py-4 px-6 md:px-8 rounded-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-md hover:-translate-y-1 flex items-center justify-center gap-2 min-w-[140px]"
             >
               {isPending ? (
                 <>
@@ -305,7 +324,7 @@ export default function FormularioPedido({
               )}
             </button>
             {error && (
-              <p className="text-red-400 text-sm font-medium mt-2 w-full text-center">{error}</p>
+              <p className="text-red-400 text-sm font-medium mt-2 w-full text-center absolute -top-8 left-0 right-0">{error}</p>
             )}
           </div>
         </div>

@@ -28,8 +28,8 @@ export default function FiltroDias({ diaAtual }: { diaAtual: number }) {
           onClick={() => handleChange(d.num)}
           className={`px-4 py-2 rounded-lg font-medium whitespace-nowrap transition-colors ${
             diaSelecionado === d.num
-              ? 'bg-nina-gold-400 text-nina-olive-900 shadow-sm scale-105'
-              : 'bg-[#e8e3d5] text-[#383b32] hover:bg-nina-gold-400/50'
+              ? 'bg-nina-red-400 text-nina-dark-900 shadow-sm scale-105'
+              : 'bg-[#e8e3d5] text-[#383b32] hover:bg-nina-red-400/50'
           }`}
         >
           {d.nome}

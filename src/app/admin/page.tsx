@@ -46,7 +46,7 @@ export default async function AdminDashboard() {
     <div className="space-y-6">
       <div>
         <h1 className="text-3xl font-black text-[#383b32] tracking-tight">Visão Geral</h1>
-        <p className="text-nina-olive-300 mt-1">Bem-vindo ao centro de comando da cantina.</p>
+        <p className="text-nina-dark-300 mt-1">Bem-vindo ao centro de comando da cantina.</p>
       </div>
       
       <MotionDiv 
@@ -59,10 +59,10 @@ export default async function AdminDashboard() {
           <Link href="/admin/usuarios" className="block cursor-pointer">
             <div className="solid-card p-6 md:p-8 flex items-center justify-between group">
               <div>
-                <p className="text-nina-olive-300 font-bold tracking-wider text-xs uppercase mb-2">Total de Alunos</p>
+                <p className="text-nina-dark-300 font-bold tracking-wider text-xs uppercase mb-2">Total de Alunos</p>
                 <p className="text-4xl md:text-5xl font-black tracking-tighter text-[#383b32]">{usuariosCount || 0}</p>
               </div>
-              <div className="bg-[#e8e3d5] p-4 rounded-xl text-[#383b32] group-hover:bg-nina-gold-400 transition-colors">
+              <div className="bg-[#e8e3d5] p-4 rounded-xl text-[#383b32] group-hover:bg-nina-red-400 transition-colors">
                 <Users size={28} />
               </div>
             </div>
@@ -73,12 +73,12 @@ export default async function AdminDashboard() {
           <Link href="/admin/pedidos" className="block cursor-pointer">
             <div className="solid-card p-6 md:p-8 flex items-center justify-between group">
               <div>
-                <p className="text-nina-olive-300 font-bold tracking-wider text-xs uppercase mb-2">Faturamento (Geral)</p>
-                <p className="text-4xl md:text-5xl font-black tracking-tighter text-nina-gold-500">
+                <p className="text-nina-dark-300 font-bold tracking-wider text-xs uppercase mb-2">Faturamento (Geral)</p>
+                <p className="text-4xl md:text-5xl font-black tracking-tighter text-nina-red-500">
                   {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(faturamento)}
                 </p>
               </div>
-              <div className="bg-[#e8e3d5] p-4 rounded-xl text-[#383b32] group-hover:bg-nina-gold-400 transition-colors hidden sm:block">
+              <div className="bg-[#e8e3d5] p-4 rounded-xl text-[#383b32] group-hover:bg-nina-red-400 transition-colors hidden sm:block">
                 <DollarSign size={28} />
               </div>
             </div>
@@ -91,7 +91,7 @@ export default async function AdminDashboard() {
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-xl font-bold text-[#383b32] tracking-tight">Vendas da Semana</h2>
             <div className="flex items-center gap-2 bg-[#e8e3d5] px-4 py-2 rounded-full">
-              <span className="w-2.5 h-2.5 rounded-full bg-nina-gold-500"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-nina-red-500"></span>
               <span className="text-xs font-bold text-[#383b32]">Refeições Agendadas</span>
             </div>
           </div>
@@ -112,12 +112,12 @@ export default async function AdminDashboard() {
                 <div key={dia} className="relative z-10 flex flex-col items-center flex-1 h-full justify-end group">
                   <div className="w-full max-w-[4rem] relative flex items-end justify-center h-full">
                     {/* Tooltip */}
-                    <div className="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-nina-olive-700 text-[#f4f0e6] text-xs font-bold px-2 py-1 rounded pointer-events-none whitespace-nowrap">
+                    <div className="absolute -top-10 opacity-0 group-hover:opacity-100 transition-opacity bg-nina-dark-700 text-[#f4f0e6] text-xs font-bold px-2 py-1 rounded pointer-events-none whitespace-nowrap">
                       {chartData[idx]} refeições
                     </div>
                     {/* Bar Fill */}
                     <div 
-                      className="w-full bg-nina-gold-400 rounded-sm transition-all duration-700 ease-out group-hover:bg-nina-gold-500" 
+                      className="w-full bg-nina-red-400 rounded-sm transition-all duration-700 ease-out group-hover:bg-nina-red-500" 
                       style={{ height: `${Math.max(heightPercentage, 2)}%`, minHeight: '4px' }}
                     ></div>
                   </div>

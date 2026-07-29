@@ -30,7 +30,7 @@ export default function NovoCardapioPage() {
                 type="date"
                 name="data_inicio_semana"
                 required
-                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-gold-400 focus:border-nina-gold-400 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-red-400 focus:border-nina-red-400 sm:text-sm"
               />
             </div>
             <p className="text-xs text-slate-500 mt-1">Este cardápio valerá para a semana toda a partir desta data.</p>
@@ -46,7 +46,7 @@ export default function NovoCardapioPage() {
                 name="prato_principal"
                 required
                 placeholder="Ex: Strogonoff de Frango"
-                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-gold-400 focus:border-nina-gold-400 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-red-400 focus:border-nina-red-400 sm:text-sm"
               />
             </div>
           </div>
@@ -60,7 +60,7 @@ export default function NovoCardapioPage() {
                 type="text"
                 name="acompanhamentos"
                 placeholder="Ex: Arroz, batata palha, salada"
-                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-gold-400 focus:border-nina-gold-400 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-red-400 focus:border-nina-red-400 sm:text-sm"
               />
             </div>
 
@@ -72,7 +72,7 @@ export default function NovoCardapioPage() {
                 type="text"
                 name="opcao_vegetariana"
                 placeholder="Ex: Omelete de legumes"
-                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-gold-400 focus:border-nina-gold-400 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-red-400 focus:border-nina-red-400 sm:text-sm"
               />
             </div>
             <p className="text-xs text-slate-500 mt-1">Cole o link de uma imagem para ilustrar o cardápio (se desejar).</p>
@@ -90,7 +90,7 @@ export default function NovoCardapioPage() {
                 min="0"
                 required
                 defaultValue="15.00"
-                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-gold-400 focus:border-nina-gold-400 sm:text-sm"
+                className="appearance-none relative block w-full px-3 py-2 border border-[#e8e3d5] placeholder-[#383b32]/40 text-[#383b32] rounded-lg focus:outline-none focus:ring-nina-red-400 focus:border-nina-red-400 sm:text-sm"
               />
             </div>
           </div>

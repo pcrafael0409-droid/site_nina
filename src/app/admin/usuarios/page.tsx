@@ -24,7 +24,7 @@ export default async function UsuariosPage(props: { searchParams: Promise<{ q?: 
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-black text-[#383b32] tracking-tight print:text-xl">Usuários e Alunos</h1>
-            <p className="text-nina-olive-400 mt-1 print:hidden">Gerencie o acesso e informações dos usuários.</p>
+            <p className="text-nina-dark-400 mt-1 print:hidden">Gerencie o acesso e informações dos usuários.</p>
           </div>
           <div className="w-full md:w-auto">
             <BuscaUsuarios />
@@ -55,25 +55,25 @@ export default async function UsuariosPage(props: { searchParams: Promise<{ q?: 
                       <h3 className="font-bold text-[#383b32] text-lg print:text-sm uppercase leading-tight line-clamp-1 transition-colors">
                         {usuario.nome_completo}
                       </h3>
-                      <p className="text-nina-olive-400 text-xs mt-0.5 print:hidden line-clamp-1">{usuario.email}</p>
+                      <p className="text-nina-dark-400 text-xs mt-0.5 print:hidden line-clamp-1">{usuario.email}</p>
                     </div>
                   </div>
                   
                   <div className="flex flex-col gap-2 text-sm text-[#383b32]/70 print:text-xs print:text-black bg-[#e8e3d5]/30 p-4 rounded-xl print:bg-transparent print:p-0 print:gap-0 border border-[#e8e3d5]">
                     <div className="flex justify-between items-center print:justify-start print:gap-2">
-                      <span className="font-semibold text-nina-olive-400 print:hidden">Turma</span>
+                      <span className="font-semibold text-nina-dark-400 print:hidden">Turma</span>
                       <span className="hidden print:inline font-bold">Turma:</span>
                       <span className="font-bold text-[#383b32] bg-[#f4f0e6] shadow-sm px-3 py-1 rounded-lg border border-[#e8e3d5] print:border-none print:bg-transparent print:px-0 print:text-black">
                         {usuario.turma || '-'}
                       </span>
                     </div>
                     <div className="flex justify-between items-center print:hidden mt-2 pt-2 border-t border-[#e8e3d5]">
-                      <span className="font-semibold text-nina-olive-400">Tipo</span>
+                      <span className="font-semibold text-nina-dark-400">Tipo</span>
                       <span className={`text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-lg border shadow-sm ${
                         usuario.role === 'admin' 
-                          ? 'bg-nina-gold-400 text-nina-olive-900 border-nina-gold-500' 
+                          ? 'bg-nina-red-400 text-nina-dark-900 border-nina-red-500' 
                           : (usuario.turma?.toLowerCase().includes('professor') || usuario.turma?.toLowerCase().includes('funcionário'))
-                            ? 'bg-nina-olive-200 text-nina-olive-900 border-nina-olive-300'
+                            ? 'bg-nina-dark-200 text-nina-dark-900 border-nina-dark-300'
                             : 'bg-[#f5f3ed] text-[#2d2f27] border-[#e8e6de]'
                       }`}>
                         {usuario.role === 'admin' ? 'Administrador' : ((usuario.turma?.toLowerCase().includes('professor') || usuario.turma?.toLowerCase().includes('funcionário')) ? 'Professor' : 'Aluno')}

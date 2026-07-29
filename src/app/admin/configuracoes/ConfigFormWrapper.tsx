@@ -31,11 +31,11 @@ export default function ConfigFormWrapper({ config }: { config: any }) {
     }
   }
 
-  const inputClasses = "appearance-none relative block w-full px-4 py-3 bg-[#fdfcfa] border border-[#e8e3d5] placeholder-[#383b32]/30 text-[#383b32] font-medium rounded-xl focus:outline-none focus:ring-2 focus:ring-nina-gold-400/50 focus:border-nina-gold-400 focus:bg-white transition-all shadow-sm sm:text-sm"
+  const inputClasses = "appearance-none relative block w-full px-4 py-3 bg-[#fdfcfa] border border-[#e8e3d5] placeholder-[#383b32]/30 text-[#383b32] font-medium rounded-xl focus:outline-none focus:ring-2 focus:ring-nina-red-400/50 focus:border-nina-red-400 focus:bg-white transition-all shadow-sm sm:text-sm"
 
   return (
     <form onSubmit={handleSubmit} className="space-y-8 solid-card p-8 md:p-10 mt-4 relative">
-      <div className="absolute top-0 right-0 w-64 h-64 bg-nina-gold-400/5 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 w-64 h-64 bg-nina-red-400/5 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/3 pointer-events-none"></div>
       <input type="hidden" name="id" value={config?.id || 1} />
       
 
@@ -95,7 +95,7 @@ export default function ConfigFormWrapper({ config }: { config: any }) {
         <button
           type="submit"
           disabled={isPending}
-          className="flex items-center gap-2 px-8 py-3.5 bg-nina-gold-400 text-nina-olive-900 font-bold text-sm uppercase tracking-wide rounded-xl hover:bg-nina-gold-500 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nina-gold-400 transition-all disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+          className="flex items-center gap-2 px-8 py-3.5 bg-nina-red-400 text-nina-dark-900 font-bold text-sm uppercase tracking-wide rounded-xl hover:bg-nina-red-500 hover:shadow-md hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-nina-red-400 transition-all disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
         >
           {isPending ? <Loader2 size={18} className="animate-spin" /> : <Save size={18} />}
           {isPending ? 'Salvando...' : 'Salvar Configurações'}

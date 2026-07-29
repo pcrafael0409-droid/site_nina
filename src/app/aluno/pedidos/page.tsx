@@ -43,14 +43,14 @@ export default async function MeusPedidosPage() {
   return (
     <div>
       <h1 className="text-2xl md:text-3xl font-black text-[#383b32] mb-6 flex items-center gap-3 tracking-tight">
-        <Receipt className="text-nina-gold-500 w-8 h-8" />
+        <Receipt className="text-nina-red-500 w-8 h-8" />
         Meus Pedidos
       </h1>
 
       {(!pedidos || pedidos.length === 0) ? (
         <div className="solid-card p-10 flex flex-col items-center justify-center min-h-[300px]">
-          <Receipt className="text-nina-olive-300 w-16 h-16 mb-4" />
-          <p className="text-xl font-semibold text-nina-olive-400">Você ainda não fez nenhum pedido.</p>
+          <Receipt className="text-nina-dark-300 w-16 h-16 mb-4" />
+          <p className="text-xl font-semibold text-nina-dark-400">Você ainda não fez nenhum pedido.</p>
         </div>
       ) : (
         <div className="space-y-4">
@@ -66,21 +66,21 @@ export default async function MeusPedidosPage() {
                       <BotaoCancelarPedido pedidoId={pedido.id} />
                     )}
                   </div>
-                  <div className="text-sm font-medium text-nina-olive-400 mb-3 bg-[#e8e3d5]/50 inline-block px-3 py-1.5 rounded-lg border border-[#e8e3d5]">
-                    <span className="text-nina-olive-400">Dias:</span> <span className="text-[#383b32]">{getDiasTexto(pedido.dias_semana, pedido.proteinas)}</span>
+                  <div className="text-sm font-medium text-nina-dark-400 mb-3 bg-[#e8e3d5]/50 inline-block px-3 py-1.5 rounded-lg border border-[#e8e3d5]">
+                    <span className="text-nina-dark-400">Dias:</span> <span className="text-[#383b32]">{getDiasTexto(pedido.dias_semana, pedido.proteinas)}</span>
                   </div>
                   
                   <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mt-2 pt-4 border-t border-[#e8e3d5]">
-                    <div className="text-xs font-semibold text-nina-olive-300 uppercase tracking-wider">
+                    <div className="text-xs font-semibold text-nina-dark-300 uppercase tracking-wider">
                       Criado em {new Date(pedido.created_at).toLocaleDateString('pt-BR')}
                     </div>
                     
                     <div className="flex items-center justify-between md:justify-end w-full md:w-auto gap-4">
                       <div className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider border shadow-sm ${
                         pedido.status === 'pendente' ? 'text-amber-700 bg-amber-50 border-amber-200' :
-                        pedido.status === 'pago' ? 'text-nina-olive-800 bg-nina-gold-400 border-nina-gold-500' :
+                        pedido.status === 'pago' ? 'text-nina-dark-800 bg-nina-red-400 border-nina-red-500' :
                         pedido.status === 'entregue' ? 'text-blue-700 bg-blue-50 border-blue-200' :
-                        'text-nina-olive-500 bg-[#e8e3d5] border-[#c9cebf]'
+                        'text-nina-dark-500 bg-[#e8e3d5] border-[#c9cebf]'
                       }`}>
                         <StatusIcon size={14} />
                         {statusConfig.label}
@@ -98,9 +98,9 @@ export default async function MeusPedidosPage() {
                   <Link 
                     href={`/aluno/pagamento/${pedido.id}`}
                     key={pedido.id} 
-                    className="block solid-card p-6 flex flex-col justify-between gap-4 cursor-pointer relative overflow-hidden group border-nina-gold-400 hover:-translate-y-1"
+                    className="block solid-card p-6 flex flex-col justify-between gap-4 cursor-pointer relative overflow-hidden group border-nina-red-400 hover:-translate-y-1"
                   >
-                    <div className="absolute top-0 left-0 w-1.5 h-full bg-nina-gold-400"></div>
+                    <div className="absolute top-0 left-0 w-1.5 h-full bg-nina-red-400"></div>
                     {cardContent}
                   </Link>
                 )
@@ -108,7 +108,7 @@ export default async function MeusPedidosPage() {
 
               return (
                 <div key={pedido.id} className="solid-card p-6 flex flex-col justify-between gap-4 relative overflow-hidden">
-                  <div className={`absolute top-0 left-0 w-1.5 h-full ${pedido.status === 'pago' || pedido.status === 'entregue' ? 'bg-nina-olive-600' : 'bg-[#c9cebf]'}`}></div>
+                  <div className={`absolute top-0 left-0 w-1.5 h-full ${pedido.status === 'pago' || pedido.status === 'entregue' ? 'bg-nina-dark-600' : 'bg-[#c9cebf]'}`}></div>
                   {cardContent}
                 </div>
               )

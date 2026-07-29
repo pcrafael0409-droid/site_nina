@@ -15,7 +15,7 @@ export default async function ConfiguracoesPage() {
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-[#383b32]">Configurações do Sistema</h1>
-        <p className="text-nina-olive-400">Ajuste os parâmetros gerais da cantina.</p>
+        <p className="text-nina-dark-400">Ajuste os parâmetros gerais da cantina.</p>
       </div>
 
       <div className="solid-card rounded-xl p-6 max-w-2xl shadow-sm">

@@ -20,15 +20,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-[#f4f0e6] relative">
       {/* Sidebar (Desktop only) */}
-      <aside className="hidden md:flex w-72 bg-nina-olive-700 p-6 flex-col print:hidden sticky top-0 h-screen overflow-y-auto custom-scrollbar shadow-xl z-20">
+      <aside className="hidden md:flex w-72 bg-nina-dark-700 p-6 flex-col print:hidden sticky top-0 h-screen overflow-y-auto custom-scrollbar shadow-xl z-20">
         <div className="mb-10 px-2 flex flex-col gap-1">
-          <div className="flex items-center gap-2 text-nina-gold-400 mb-1">
-            <div className="bg-nina-gold-400 text-nina-olive-900 rounded-md p-1">
+          <div className="flex items-center gap-2 text-nina-red-400 mb-1">
+            <div className="bg-nina-red-400 text-nina-dark-900 rounded-md p-1">
               <Utensils size={20} />
             </div>
             <h2 className="text-2xl font-black text-[#f4f0e6] tracking-tight">Cantina Nina</h2>
           </div>
-          <p className="text-[10px] font-bold text-nina-olive-300 uppercase tracking-widest pl-10">Painel de Gestão</p>
+          <p className="text-[10px] font-bold text-nina-dark-300 uppercase tracking-widest pl-10">Painel de Gestão</p>
         </div>
         
         <nav className="flex-1 space-y-1">
@@ -41,22 +41,22 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 href={link.href}
                 className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-300 font-medium ${
                   isActive 
-                    ? 'bg-nina-gold-400 text-nina-olive-900 shadow-sm' 
-                    : 'text-nina-olive-200 hover:bg-nina-olive-600 hover:text-[#f4f0e6]'
+                    ? 'bg-nina-red-400 text-nina-dark-900 shadow-sm' 
+                    : 'text-nina-dark-200 hover:bg-nina-dark-600 hover:text-[#f4f0e6]'
                 }`}
               >
-                <Icon size={18} className={`${isActive ? 'text-nina-olive-900' : 'text-nina-olive-300'}`} />
+                <Icon size={18} className={`${isActive ? 'text-nina-dark-900' : 'text-nina-dark-300'}`} />
                 <span>{link.label}</span>
               </Link>
             )
           })}
         </nav>
 
-        <div className="mt-8 border-t border-nina-olive-600 pt-4">
+        <div className="mt-8 border-t border-nina-dark-600 pt-4">
           <form action={logout}>
             <button
               type="submit"
-              className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-nina-olive-200 hover:bg-nina-olive-600 hover:text-[#f4f0e6] transition-all duration-300 font-medium"
+              className="flex items-center gap-3 px-4 py-3 w-full rounded-lg text-nina-dark-200 hover:bg-nina-dark-600 hover:text-[#f4f0e6] transition-all duration-300 font-medium"
             >
               <LogOut size={18} />
               Sair do Sistema
@@ -71,7 +71,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </main>
 
       {/* Mobile Navigation (Bottom) */}
-      <nav className="md:hidden bg-nina-olive-700 fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.25)] print:hidden">
+      <nav className="md:hidden bg-nina-dark-700 fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.25)] print:hidden">
         <div className="grid grid-cols-4 gap-0 px-1 pt-1 pb-safe">
           {/* Row 1: first 4 items */}
           {links.slice(0, 4).map((link) => {
@@ -83,8 +83,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 href={link.href}
                 className={`flex flex-col items-center justify-center gap-0.5 py-2 transition-all duration-200 rounded-xl ${
                   isActive 
-                    ? 'text-nina-olive-900 bg-nina-gold-400' 
-                    : 'text-nina-olive-200'
+                    ? 'text-nina-dark-900 bg-nina-red-400' 
+                    : 'text-nina-dark-200'
                 }`}
               >
                 <Icon size={19} />
@@ -104,8 +104,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 href={link.href}
                 className={`flex flex-col items-center justify-center gap-0.5 py-2 transition-all duration-200 rounded-xl ${
                   isActive 
-                    ? 'text-nina-olive-900 bg-nina-gold-400' 
-                    : 'text-nina-olive-200'
+                    ? 'text-nina-dark-900 bg-nina-red-400' 
+                    : 'text-nina-dark-200'
                 }`}
               >
                 <Icon size={19} />
@@ -116,7 +116,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           <form action={logout}>
             <button
               type="submit"
-              className="flex flex-col items-center justify-center gap-0.5 w-full py-2 text-nina-olive-200 rounded-xl"
+              className="flex flex-col items-center justify-center gap-0.5 w-full py-2 text-nina-dark-200 rounded-xl"
             >
               <LogOut size={19} />
               <span className="text-[9px] font-bold">Sair</span>

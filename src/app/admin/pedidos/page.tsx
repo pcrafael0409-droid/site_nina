@@ -66,7 +66,7 @@ export default async function AdminPedidosPage() {
                     </div>
                     <span className={`shrink-0 inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-widest border ${
                       isEntregue ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
-                      isPago ? 'bg-nina-gold-400 text-nina-olive-900 border-nina-gold-500' :
+                      isPago ? 'bg-nina-red-400 text-nina-dark-900 border-nina-red-500' :
                       'bg-amber-50 text-amber-700 border-amber-200'
                     }`}>
                       {pedido.status}

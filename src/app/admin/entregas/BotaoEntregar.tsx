@@ -25,7 +25,7 @@ export default function BotaoEntregar({ pedidoId }: { pedidoId: string }) {
       <button
         onClick={handleConfirmar}
         disabled={isPending}
-        className="flex items-center gap-2 px-4 py-2 bg-nina-gold-400 hover:bg-nina-gold-500 text-nina-olive-900 text-sm font-semibold rounded-lg transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center gap-2 px-4 py-2 bg-nina-red-400 hover:bg-nina-red-500 text-nina-dark-900 text-sm font-semibold rounded-lg transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isPending ? <Loader2 size={16} className="animate-spin" /> : <CheckCircle2 size={16} />}
         Dar Baixa

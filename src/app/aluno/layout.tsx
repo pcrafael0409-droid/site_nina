@@ -16,35 +16,38 @@ export default function AlunoLayout({ children }: { children: React.ReactNode })
   ]
 
   return (
-    <div className="min-h-screen bg-[#f4f0e6] pb-24 md:pb-0 relative text-[#383b32]">
+    <div className="min-h-screen bg-background pb-24 md:pb-0 relative text-nina-dark-800">
       
       {/* Desktop/Tablet Header — hidden on mobile (bottom nav handles navigation) */}
-      <header className="hidden md:block bg-nina-olive-600 sticky top-0 z-20 shadow-md">
+      <header className="hidden md:block bg-nina-dark-900 sticky top-0 z-20 shadow-md">
         <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <div className="flex items-center gap-2 text-nina-gold-400 hidden md:flex">
-              <div className="bg-nina-gold-400 text-nina-olive-900 rounded-md p-1">
+            <div className="flex items-center gap-2 text-white hidden md:flex">
+              <div className="bg-nina-red-500 text-white rounded-md p-1">
                 <Utensils size={18} />
               </div>
-              <span className="font-bold text-xl tracking-tight text-[#f4f0e6]">
+              <span className="font-bold text-xl tracking-tight text-white">
                 Cantina Nina
               </span>
             </div>
             
-            <nav className="hidden md:flex space-x-2">
+            <nav className="hidden md:flex space-x-6 ml-4">
               {links.map((link) => {
                 const isActive = pathname === link.href
                 return (
                   <Link
                     key={link.href}
                     href={link.href}
-                    className={`flex items-center gap-2 px-4 py-1.5 rounded-lg transition-all duration-300 font-medium text-sm ${
+                    className={`flex items-center py-5 transition-all duration-300 font-medium text-sm relative ${
                       isActive 
-                        ? 'bg-nina-gold-400 text-nina-olive-900 shadow-sm' 
-                        : 'text-nina-olive-200 hover:text-[#f4f0e6] hover:bg-nina-olive-500'
+                        ? 'text-white font-bold' 
+                        : 'text-nina-dark-300 hover:text-white'
                     }`}
                   >
                     {link.label}
+                    {isActive && (
+                      <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-nina-red-400 rounded-t-sm" />
+                    )}
                   </Link>
                 )
               })}
@@ -54,7 +57,7 @@ export default function AlunoLayout({ children }: { children: React.ReactNode })
           <form action={logout}>
             <button
               type="submit"
-              className="flex items-center gap-2 text-nina-olive-200 hover:text-[#f4f0e6] hover:bg-nina-olive-500 px-4 py-1.5 rounded-lg font-medium text-sm transition-all duration-300"
+              className="flex items-center gap-2 text-nina-dark-200 hover:text-white hover:bg-nina-dark-800 px-4 py-1.5 rounded-lg font-medium text-sm transition-all duration-300"
             >
               <LogOut size={16} />
               <span className="hidden md:inline">Sair</span>
@@ -69,7 +72,7 @@ export default function AlunoLayout({ children }: { children: React.ReactNode })
       </main>
 
       {/* Mobile Navigation (Bottom) */}
-      <nav className="md:hidden bg-nina-olive-600 fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.2)]">
+      <nav className="md:hidden bg-nina-dark-900 fixed bottom-0 left-0 right-0 z-50 shadow-[0_-4px_20px_rgba(0,0,0,0.2)]">
         <div className="flex items-center justify-around px-2 py-1 pb-safe">
           {links.map((link) => {
             const isActive = pathname === link.href
@@ -80,8 +83,8 @@ export default function AlunoLayout({ children }: { children: React.ReactNode })
                 href={link.href}
                 className={`flex flex-col items-center justify-center gap-0.5 px-3 py-2 flex-1 transition-all duration-300 rounded-xl ${
                   isActive 
-                    ? 'text-nina-olive-900 bg-nina-gold-400 shadow-sm' 
-                    : 'text-nina-olive-200'
+                    ? 'text-white bg-nina-red-500 shadow-sm' 
+                    : 'text-nina-dark-300'
                 }`}
               >
                 <Icon size={22} />
@@ -93,7 +96,7 @@ export default function AlunoLayout({ children }: { children: React.ReactNode })
           <form action={logout} className="flex-1">
             <button
               type="submit"
-              className="flex flex-col items-center justify-center gap-0.5 w-full py-2 text-nina-olive-200 rounded-xl"
+              className="flex flex-col items-center justify-center gap-0.5 w-full py-2 text-nina-dark-300 rounded-xl"
             >
               <LogOut size={22} />
               <span className="text-[9px] font-bold">Sair</span>

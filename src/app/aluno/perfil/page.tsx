@@ -86,7 +86,7 @@ export default function PerfilPage() {
       
       {/* Informações do Usuário */}
       <div className="solid-card p-8 text-center relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-32 bg-nina-olive-600"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-nina-dark-600"></div>
         <div className="relative z-10 flex justify-center mb-4 mt-8">
           <div className="w-28 h-28 bg-[#f4f0e6] rounded-full flex items-center justify-center shadow-md border-4 border-[#f4f0e6] text-[#383b32]/30">
             <UserCircle size={90} />
@@ -120,7 +120,7 @@ export default function PerfilPage() {
         {!showPasswordForm && (
           <button 
             onClick={() => setShowPasswordForm(true)}
-            className="w-full bg-[#e8e3d5] hover:bg-nina-gold-400 text-[#383b32] font-bold py-4 rounded-2xl transition-colors flex justify-center items-center gap-2 mt-8 shadow-sm hover:shadow-md"
+            className="w-full bg-[#e8e3d5] hover:bg-nina-red-400 text-[#383b32] font-bold py-4 rounded-2xl transition-colors flex justify-center items-center gap-2 mt-8 shadow-sm hover:shadow-md"
           >
             <KeyRound size={20} /> Mudar Minha Senha
           </button>
@@ -132,7 +132,7 @@ export default function PerfilPage() {
         <div className="solid-card p-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
           <div className="flex items-center justify-between mb-6 pb-6 border-b border-[#e8e3d5]">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 bg-nina-gold-400/20 text-nina-gold-600 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-nina-red-400/20 text-nina-red-600 rounded-full flex items-center justify-center">
                 <ShieldCheck size={20} />
               </div>
               <h2 className="text-lg font-bold text-[#383b32]">Nova Senha</h2>
@@ -155,7 +155,7 @@ export default function PerfilPage() {
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-[#e8e3d5] bg-white rounded-lg focus:ring-2 focus:ring-nina-gold-400 outline-none transition-all text-[#383b32]"
+                className="w-full px-4 py-2 border border-[#e8e3d5] bg-white rounded-lg focus:ring-2 focus:ring-nina-red-400 outline-none transition-all text-[#383b32]"
                 placeholder="No mínimo 6 caracteres"
               />
             </div>
@@ -169,7 +169,7 @@ export default function PerfilPage() {
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 required
-                className="w-full px-4 py-2 border border-[#e8e3d5] bg-white rounded-lg focus:ring-2 focus:ring-nina-gold-400 outline-none transition-all text-[#383b32]"
+                className="w-full px-4 py-2 border border-[#e8e3d5] bg-white rounded-lg focus:ring-2 focus:ring-nina-red-400 outline-none transition-all text-[#383b32]"
                 placeholder="Repita a senha"
               />
             </div>
@@ -191,10 +191,10 @@ export default function PerfilPage() {
             <button 
               type="submit"
               disabled={isPending}
-              className="w-full bg-nina-gold-400 hover:bg-nina-gold-500 text-nina-olive-900 font-bold py-3 rounded-xl transition-all disabled:opacity-70 flex justify-center items-center gap-2 mt-4 shadow-md shadow-nina-gold-400/20 hover:shadow-lg hover:-translate-y-0.5"
+              className="w-full bg-nina-red-400 hover:bg-nina-red-500 text-nina-dark-900 font-bold py-3 rounded-xl transition-all disabled:opacity-70 flex justify-center items-center gap-2 mt-4 shadow-md shadow-nina-red-400/20 hover:shadow-lg hover:-translate-y-0.5"
             >
               {isPending ? (
-                <div className="w-5 h-5 border-2 border-nina-olive-900 border-t-transparent rounded-full animate-spin"></div>
+                <div className="w-5 h-5 border-2 border-nina-dark-900 border-t-transparent rounded-full animate-spin"></div>
               ) : (
                 <><KeyRound size={20} /> Atualizar Senha</>
               )}

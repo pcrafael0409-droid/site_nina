@@ -74,18 +74,18 @@ export default function ClientPagamento({ pedidoId, transacaoId, qrCode, qrCodeB
       <div className="max-w-md mx-auto relative z-10 font-sans mt-8">
         <div className="solid-card bg-white p-8 md:p-10 shadow-xl relative overflow-hidden">
           {/* Enfeite de fundo */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-nina-gold-400/10 rounded-full blur-3xl opacity-60 -z-10 -translate-y-1/2 translate-x-1/4"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-nina-red-400/10 rounded-full blur-3xl opacity-60 -z-10 -translate-y-1/2 translate-x-1/4"></div>
 
           <div className="text-center mb-8">
-            <div className="bg-gradient-to-br from-nina-gold-400/20 to-nina-gold-400/5 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-inner border border-nina-gold-400/30">
-              <CheckCircle2 size={36} className="text-nina-gold-600" />
+            <div className="bg-gradient-to-br from-nina-red-400/20 to-nina-red-400/5 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4 shadow-inner border border-nina-red-400/30">
+              <CheckCircle2 size={36} className="text-nina-red-600" />
             </div>
             <h2 className="text-2xl font-black text-[#2d2f27] tracking-tight">Pedido Recebido!</h2>
-            <p className="text-nina-olive-400 font-medium mt-2">Realize o pagamento via Pix para confirmar seu pedido.</p>
+            <p className="text-nina-dark-400 font-medium mt-2">Realize o pagamento via Pix para confirmar seu pedido.</p>
           </div>
 
           <div className="bg-[#f5f3ed] rounded-3xl p-6 border border-[#e8e6de] shadow-inner mb-6 flex flex-col items-center justify-center group relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-nina-gold-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-nina-red-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
             {qrCodeBase64 ? (
               <img 
                 src={`data:image/png;base64,${qrCodeBase64}`} 
@@ -94,14 +94,14 @@ export default function ClientPagamento({ pedidoId, transacaoId, qrCode, qrCodeB
               />
             ) : (
               <div className="w-48 h-48 bg-[#f5f3ed] rounded-xl flex items-center justify-center border border-[#e8e6de]">
-                <span className="text-nina-olive-300 font-medium">QR Code indisponível</span>
+                <span className="text-nina-dark-300 font-medium">QR Code indisponível</span>
               </div>
             )}
           </div>
 
           <div className="mb-8 relative">
             <label className="block text-xs font-bold text-[#2d2f27] mb-2 uppercase tracking-wider ml-1">Código Pix Copia e Cola</label>
-            <div className="flex flex-col bg-[#fdfcfa] border border-[#e8e6de] rounded-2xl overflow-hidden shadow-sm focus-within:ring-2 focus-within:ring-nina-gold-400/30 focus-within:border-nina-gold-400 transition-all">
+            <div className="flex flex-col bg-[#fdfcfa] border border-[#e8e6de] rounded-2xl overflow-hidden shadow-sm focus-within:ring-2 focus-within:ring-nina-red-400/30 focus-within:border-nina-red-400 transition-all">
               <input
                 type="text"
                 readOnly
@@ -113,7 +113,7 @@ export default function ClientPagamento({ pedidoId, transacaoId, qrCode, qrCodeB
                 className={`w-full py-3 px-5 font-bold flex items-center justify-center gap-2 border-t border-[#e8e6de] transition-colors text-sm ${
                   copiado
                     ? 'bg-emerald-50 text-emerald-700'
-                    : 'bg-[#e8e6de]/50 hover:bg-[#e8e6de] text-nina-olive-600 hover:text-nina-gold-700'
+                    : 'bg-[#e8e6de]/50 hover:bg-[#e8e6de] text-nina-dark-600 hover:text-nina-red-700'
                 }`}
               >
                 <Copy size={16} />
@@ -126,7 +126,7 @@ export default function ClientPagamento({ pedidoId, transacaoId, qrCode, qrCodeB
             <button
               onClick={handleVerificar}
               disabled={isVerificando || isCancelando}
-              className="w-full bg-nina-gold-400 hover:bg-nina-gold-500 text-nina-olive-900 font-bold py-4 px-6 rounded-2xl transition-all duration-300 disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none flex items-center justify-center gap-2 shadow-md shadow-nina-gold-400/20 hover:shadow-nina-gold-400/40 hover:-translate-y-0.5 active:translate-y-0 uppercase tracking-wide text-sm"
+              className="w-full bg-nina-red-400 hover:bg-nina-red-500 text-nina-dark-900 font-bold py-4 px-6 rounded-2xl transition-all duration-300 disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none flex items-center justify-center gap-2 shadow-md shadow-nina-red-400/20 hover:shadow-nina-red-400/40 hover:-translate-y-0.5 active:translate-y-0 uppercase tracking-wide text-sm"
             >
               {isVerificando ? <Loader2 size={20} className="animate-spin" /> : <RefreshCw size={20} />}
               Já paguei / Verificar Pagamento
@@ -135,7 +135,7 @@ export default function ClientPagamento({ pedidoId, transacaoId, qrCode, qrCodeB
             <button
               onClick={handleCancelarClick}
               disabled={isVerificando || isCancelando}
-              className="w-full bg-[#fdfcfa] hover:bg-rose-50 text-nina-olive-500 hover:text-rose-600 font-bold py-4 px-6 rounded-2xl border border-[#e8e6de] hover:border-rose-200 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 shadow-sm text-sm"
+              className="w-full bg-[#fdfcfa] hover:bg-rose-50 text-nina-dark-500 hover:text-rose-600 font-bold py-4 px-6 rounded-2xl border border-[#e8e6de] hover:border-rose-200 transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2 shadow-sm text-sm"
             >
               {isCancelando ? <Loader2 size={20} className="animate-spin" /> : <XCircle size={20} />}
               Cancelar Pedido
@@ -156,19 +156,19 @@ export default function ClientPagamento({ pedidoId, transacaoId, qrCode, qrCodeB
 
       {showConfirmModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-nina-olive-950/60 backdrop-blur-sm" onClick={() => setShowConfirmModal(false)}></div>
+          <div className="absolute inset-0 bg-nina-dark-950/60 backdrop-blur-sm" onClick={() => setShowConfirmModal(false)}></div>
           <div className="bg-[#fdfcfa] rounded-3xl p-8 max-w-sm w-full relative z-10 shadow-2xl border border-[#e8e6de] animate-in zoom-in-95 duration-200 text-center">
             <div className="w-16 h-16 bg-rose-50 text-rose-600 rounded-full flex items-center justify-center mx-auto mb-4">
               <XCircle size={32} />
             </div>
             <h3 className="text-xl font-black text-[#2d2f27] mb-2">Cancelar Pedido</h3>
-            <p className="text-nina-olive-500 font-medium text-sm mb-8">
+            <p className="text-nina-dark-500 font-medium text-sm mb-8">
               Tem certeza que deseja cancelar este pedido? Esta ação não pode ser desfeita.
             </p>
             <div className="flex gap-3">
               <button 
                 onClick={() => setShowConfirmModal(false)}
-                className="flex-1 px-4 py-3 rounded-xl border border-[#e8e6de] bg-[#f5f3ed] text-nina-olive-600 font-bold hover:bg-[#e8e6de] transition-colors"
+                className="flex-1 px-4 py-3 rounded-xl border border-[#e8e6de] bg-[#f5f3ed] text-nina-dark-600 font-bold hover:bg-[#e8e6de] transition-colors"
               >
                 Voltar
               </button>

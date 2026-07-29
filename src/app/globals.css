@@ -1,29 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --color-nina-olive-50: #f5f6f3;
-  --color-nina-olive-100: #e8eae3;
-  --color-nina-olive-200: #cfd3c7;
-  --color-nina-olive-300: #b0b5a5;
-  --color-nina-olive-400: #8c9280;
-  --color-nina-olive-500: #6a6f5e; 
-  --color-nina-olive-600: #54584a;
-  --color-nina-olive-700: #424639;
-  --color-nina-olive-800: #36392e;
-  --color-nina-olive-900: #2d2f27;
-  --color-nina-olive-950: #171914;
+  /* Dark Red/Brown tones for text and header */
+  --color-nina-dark-50: #fbf9f9;
+  --color-nina-dark-100: #f4eae9;
+  --color-nina-dark-200: #e5d1d1;
+  --color-nina-dark-300: #d1b1b1;
+  --color-nina-dark-400: #b88d8d;
+  --color-nina-dark-500: #9e6d6d; 
+  --color-nina-dark-600: #814f4f;
+  --color-nina-dark-700: #653939;
+  --color-nina-dark-800: #4a2929; /* Text color */
+  --color-nina-dark-900: #431f1f; /* Header color */
+  --color-nina-dark-950: #291010;
 
-  --color-nina-gold-50: #fbf9f4;
-  --color-nina-gold-100: #f4eee1;
-  --color-nina-gold-200: #e7dac1;
-  --color-nina-gold-300: #d6bf96;
-  --color-nina-gold-400: #ceae66; /* Main Gold */
-  --color-nina-gold-500: #c19c4d; 
-  --color-nina-gold-600: #a9813c;
-  --color-nina-gold-700: #886231;
+  /* Coral/Red tones for primary elements */
+  --color-nina-red-50: #fff5f5;
+  --color-nina-red-100: #ffe6e6;
+  --color-nina-red-200: #fccaca;
+  --color-nina-red-300: #f7a1a1;
+  --color-nina-red-400: #f07373; /* Primary Red */
+  --color-nina-red-500: #e05252; 
+  --color-nina-red-600: #c93b3b;
+  --color-nina-red-700: #a72d2d;
 
-  --color-nina-bg-light: #f5f3ed;
-  --color-nina-bg-dark: #e8e6de;
+  /* Backgrounds */
+  --color-nina-bg-light: #fff8f8;
+  --color-nina-bg-dark: #fcebeb;
   
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -31,8 +34,8 @@
 
 @layer base {
   :root {
-    --background: #f5f3ed;
-    --foreground: #2d2f27;
+    --background: #fff8f8;
+    --foreground: #4a2929;
   }
 }
 
@@ -43,22 +46,22 @@ body {
 
 @layer utilities {
   .solid-card {
-    @apply bg-white border border-[#e8e3d5]/80 rounded-[2rem] shadow-sm transition-all duration-150 hover:shadow-md hover:border-nina-gold-400/40 relative overflow-hidden;
+    @apply bg-white border border-nina-red-200 rounded-3xl shadow-sm transition-all duration-300 hover:shadow-md hover:border-nina-red-400/60 relative overflow-hidden;
   }
-  .solid-card-gold {
-    @apply bg-[#f4f0e6] border border-nina-gold-400 rounded-2xl shadow-sm transition-all duration-150;
+  .solid-card-red {
+    @apply bg-white border border-nina-red-400 rounded-3xl shadow-sm transition-all duration-300;
   }
-  .solid-olive {
-    @apply bg-nina-olive-600 text-[#f4f0e6];
+  .solid-dark {
+    @apply bg-nina-dark-900 text-white;
   }
-  .solid-gold {
-    @apply bg-nina-gold-400 text-nina-olive-900;
+  .solid-red {
+    @apply bg-nina-red-500 text-white;
   }
-  .text-gold {
-    @apply text-nina-gold-500;
+  .text-red {
+    @apply text-nina-red-500;
   }
-  .text-olive {
-    @apply text-nina-olive-800;
+  .text-dark {
+    @apply text-nina-dark-800;
   }
   .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
