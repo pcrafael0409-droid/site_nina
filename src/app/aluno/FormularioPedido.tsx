@@ -231,7 +231,7 @@ export default function FormularioPedido({
                     {descontoPercentual > 0 ? (
                       <div className="flex flex-col md:items-end">
                         <span className="text-[9px] text-nina-red-600 bg-nina-red-50 border border-nina-red-100 px-1.5 py-0.5 rounded-sm font-bold uppercase tracking-wider mb-1">
-                          Desconto Prof.
+                          -{descontoPercentual}% OFF
                         </span>
                         <span className="line-through text-gray-400 text-sm">R$ {preco.toFixed(2).replace('.', ',')}</span>
                         <span>R$ {precoComDesconto.toFixed(2).replace('.', ',')}</span>
