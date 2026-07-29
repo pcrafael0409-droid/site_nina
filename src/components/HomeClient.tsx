@@ -137,7 +137,6 @@ export default function HomeClient() {
             >
               <div className="flex justify-between items-center mb-4 sm:mb-5 pb-4 sm:pb-5 border-b border-dashed border-gray-300">
                 <h3 className="font-serif font-bold text-lg sm:text-xl text-nina-dark-900">Cardápio do dia</h3>
-                <div className="bg-nina-red-600 text-white text-[10px] sm:text-xs font-bold rounded-md w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center shadow-sm tracking-tighter">CN</div>
               </div>
               
               <div className="space-y-4 text-[13px] sm:text-sm font-mono text-gray-800 pb-5 sm:pb-6 border-b border-gray-200">
@@ -155,7 +154,7 @@ export default function HomeClient() {
               <div className="flex justify-between items-center">
                 <span className="font-mono text-[10px] sm:text-xs text-gray-500 tracking-wider">PEDIDO Nº 042</span>
                 <div className="bg-[#e6f4ea] text-[#137333] font-mono text-[10px] sm:text-xs px-2 sm:px-3 py-1 sm:py-1.5 rounded-xl font-bold">
-                  pronto às 12h20
+                  pronto às 13h
                 </div>
               </div>
             </motion.div>
