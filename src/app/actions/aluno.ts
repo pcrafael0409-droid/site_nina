@@ -41,10 +41,18 @@ export async function criarPedido(diasSemana: number[], proteinas: Record<number
       }
     }
 
+    // Recupera o cardapio_id do primeiro dia para satisfazer a constraint NOT NULL do banco
+    const { data: primeiroCardapio } = await supabase
+      .from('cardapios')
+      .select('id')
+      .eq('dia_semana', diasSemana[0])
+      .single()
+
     const { data: novoPedido, error } = await supabase
       .from('pedidos')
       .insert({
         usuario_id: user.id,
+        cardapio_id: primeiroCardapio?.id, // Necessário para a constraint NOT NULL
         dias_semana: diasSemana,
         valor_total: valorTotal,
         status: 'pendente',

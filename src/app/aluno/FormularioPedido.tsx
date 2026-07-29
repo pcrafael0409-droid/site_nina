@@ -326,10 +326,12 @@ export default function FormularioPedido({
                 </>
               )}
             </button>
-            {error && (
-              <p className="text-red-400 text-sm font-medium mt-2 w-full text-center absolute -top-8 left-0 right-0">{error}</p>
-            )}
           </div>
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-xl mt-4 flex items-center justify-center w-full">
+              <span className="text-sm font-bold">{error}</span>
+            </div>
+          )}
         </div>
       </motion.div>
     </div>
