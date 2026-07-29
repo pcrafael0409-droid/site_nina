@@ -230,6 +230,9 @@ export default function FormularioPedido({
                   <div className={`font-mono font-bold text-xl md:text-2xl ${isSelected ? 'text-nina-dark-900' : 'text-gray-600'}`}>
                     {descontoPercentual > 0 ? (
                       <div className="flex flex-col md:items-end">
+                        <span className="text-[9px] text-nina-red-600 bg-nina-red-50 border border-nina-red-100 px-1.5 py-0.5 rounded-sm font-bold uppercase tracking-wider mb-1">
+                          Desconto Prof.
+                        </span>
                         <span className="line-through text-gray-400 text-sm">R$ {preco.toFixed(2).replace('.', ',')}</span>
                         <span>R$ {precoComDesconto.toFixed(2).replace('.', ',')}</span>
                       </div>
@@ -240,9 +243,11 @@ export default function FormularioPedido({
                 </div>
               </div>
               
-              {isSelected && (cardapioDia?.proteina_1 || cardapioDia?.proteina_2) && (
-                <div className="mt-5 pt-4 border-t border-dashed border-gray-300">
-                  <span className="font-mono text-[11px] font-bold text-gray-500 tracking-widest uppercase mb-3 block">ESCOLHA SUA OPÇÃO DE PROTEÍNA:</span>
+              {(cardapioDia?.proteina_1 || cardapioDia?.proteina_2) && (
+                <div className={`mt-5 pt-4 border-t border-dashed ${isSelected ? 'border-gray-300' : 'border-[#e8e3d5]'}`}>
+                  <span className={`font-mono text-[11px] font-bold tracking-widest uppercase mb-3 block ${isSelected ? 'text-gray-500' : 'text-gray-400'}`}>
+                    {isSelected ? 'ESCOLHA SUA OPÇÃO DE PROTEÍNA:' : 'OPÇÕES DE PROTEÍNA DESTE DIA:'}
+                  </span>
                   <div className="flex flex-col sm:flex-row gap-3">
                     {[cardapioDia?.proteina_1, cardapioDia?.proteina_2].filter(Boolean).map(proteina => (
                       <button
@@ -250,12 +255,17 @@ export default function FormularioPedido({
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          setProteinasSelecionadas({ ...proteinasSelecionadas, [dia.id]: proteina as string })
+                          if (!disponivel) return;
+                          
+                          if (!isSelected) {
+                            setDiasSelecionados([...diasSelecionados, dia.id]);
+                          }
+                          setProteinasSelecionadas({ ...proteinasSelecionadas, [dia.id]: proteina as string });
                         }}
                         className={`flex-1 px-4 py-3 text-sm font-bold rounded-sm transition-all border ${
-                          proteinasSelecionadas[dia.id] === proteina
+                          proteinasSelecionadas[dia.id] === proteina && isSelected
                             ? 'bg-nina-red-50 text-nina-red-600 border-nina-red-200 shadow-[inset_0_0_0_1px_rgba(224,82,82,0.2)]'
-                            : 'bg-white text-gray-600 border-[#e8e3d5] hover:bg-gray-50'
+                            : 'bg-white text-gray-600 border-[#e8e3d5] hover:bg-gray-50 hover:border-gray-300'
                         }`}
                       >
                         {proteina}
