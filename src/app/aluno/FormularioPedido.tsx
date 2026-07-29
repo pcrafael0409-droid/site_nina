@@ -147,23 +147,23 @@ export default function FormularioPedido({
     <div className="relative z-10 w-full max-w-[1000px] mx-auto">
       
       {/* Welcome Card */}
-      <div className="bg-white border border-nina-red-200 p-6 md:p-8 rounded-3xl shadow-sm relative overflow-hidden flex flex-col md:flex-row justify-between md:items-center mb-8">
-        <div className="relative z-10 mb-4 md:mb-0">
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-2 text-nina-dark-900">
-            Olá, <span className="text-nina-red-500">{primeiroNome}</span>
+      <div className="bg-transparent border-b border-dashed border-[#d6c0b3] pb-6 mb-8 flex flex-col md:flex-row justify-between md:items-end gap-6 relative z-10">
+        <div>
+          <h1 className="text-4xl md:text-5xl font-serif font-bold tracking-tight mb-2 text-nina-dark-900">
+            Olá, <span className="text-nina-red-600">{primeiroNome}</span>
           </h1>
-          <p className="text-nina-dark-500 font-medium">
+          <p className="text-gray-500 font-medium text-lg">
             Agende suas refeições da semana e evite filas.
           </p>
         </div>
 
-        <div className="relative z-10 text-left md:text-right">
-           <span className="text-nina-red-600 font-bold text-[11px] uppercase tracking-widest block mb-1">Total da semana</span>
-           <span className="text-3xl font-black text-nina-dark-900">R$ {valorFinal.toFixed(2).replace('.', ',')}</span>
+        <div className="text-left md:text-right bg-[#fcf9f2] border border-[#e8e3d5] p-4 rounded-sm shadow-sm min-w-[200px]">
+           <span className="font-mono text-gray-500 font-bold text-[11px] uppercase tracking-widest block mb-1">Total da semana</span>
+           <span className="text-3xl font-mono font-bold text-nina-dark-900">R$ {valorFinal.toFixed(2).replace('.', ',')}</span>
         </div>
       </div>
 
-      <h3 className="text-lg md:text-xl font-bold text-nina-dark-900 mb-6 tracking-tight">Em quais dias você vai comer na cantina?</h3>
+      <h3 className="text-xl font-serif font-bold text-nina-dark-900 mb-6 tracking-tight">Em quais dias você vai comer na cantina?</h3>
 
       <div className="flex flex-col gap-4 mb-24 relative z-10">
         {diasSemanaNomes.map((dia) => {
